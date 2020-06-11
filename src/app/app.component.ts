@@ -16,6 +16,7 @@
  */
 
 import {Component} from '@angular/core';
+import { AdAuthoringService } from './ad-authoring/ad-authoring.service';
 
 @Component({
   selector: 'app-root',
@@ -24,4 +25,10 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'amp-story-ad-authoring-tool';
+
+  constructor(private service: AdAuthoringService){}
+
+  addAdAuthoring(landingUrl: string, landingType: string) {
+      this.service.addAdAuthoring(landingUrl, landingType);
+  }
 }

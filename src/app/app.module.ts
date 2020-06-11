@@ -17,13 +17,16 @@
 
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import {AppComponent} from './app.component';
+import { AdAuthoringComponent } from './ad-authoring/ad-authoring.component';
+import { AdAuthoringService } from './ad-authoring/ad-authoring.service';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule],
-  providers: [],
+  declarations: [AppComponent, AdAuthoringComponent],
+  imports: [BrowserModule, FormsModule],
+  providers: [AdAuthoringService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -16,8 +16,8 @@ export class AdAuthoringComponent implements OnInit {
     this.adAuthoringObs = service.getAdAuthorings();
   }
 
-  addAdAuthoring(landingUrl: string, landingType: string) {
-    this.service.addAdAuthoring(landingUrl, landingType);
+  addAdAuthoring(landingUrl: string, landingType: string, callToAction: string) {
+    this.service.addAdAuthoring(landingUrl, landingType, callToAction);
   }
 
   ngOnInit(): void {

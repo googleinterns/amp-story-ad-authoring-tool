@@ -1,16 +1,17 @@
 <div class="ad-authoring">
     <input type="text" #landingUrl placeholder="Landing Page URL"/><br>
     <input type="text" #landingType placeholder="Landing Page Type"/><br>
-    <select>
-        <option value="shopnow">Shop Now</option>
-        <option value="applynow">Apply Now</option>
-        <option value="booknow">Book Now</option>
+    <select #callToAction>
+        <option value="Shop Now">Shop Now</option>
+        <option value="Apply Now">Apply Now</option>
+        <option value="Book Now">Book Now</option>
     </select>
     <br>
-    <button (click)="addAdAuthoring(landingUrl.value, landingType.value)">Generate AMPHTML</button>
+    <button (click)="addAdAuthoring(landingUrl.value, landingType.value, callToAction.value)">Generate AMPHTML</button>
 </div>
 
 <p *ngFor="let adAuthoring of adAuthoringObs | async">
     Landing Page URL: {{adAuthoring.landingUrl}} <br>
-    Landing Page Type: {{adAuthoring.landingType}}
+    Landing Page Type: {{adAuthoring.landingType}} <br>
+    Call to Action Text: {{adAuthoring.callToAction}}
 </p>

@@ -22,9 +22,10 @@ import { FormsModule } from '@angular/forms';
 import {AppComponent} from './app.component';
 import { AdAuthoringComponent } from './ad-authoring/ad-authoring.component';
 import { AdAuthoringService } from './ad-authoring/ad-authoring.service';
+import { TopBarComponent } from './top-bar/top-bar.component';
 
 @NgModule({
-  declarations: [AppComponent, AdAuthoringComponent],
+  declarations: [AppComponent, AdAuthoringComponent, TopBarComponent],
   imports: [BrowserModule, FormsModule],
   providers: [AdAuthoringService],
   bootstrap: [AppComponent]

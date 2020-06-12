@@ -2,16 +2,4 @@
   AMP Story Ad Authoring!
 </div>
 
-<div class="ad-authoring">
-  <input type="text" #landingUrl placeholder="Landing Page URL"/><br>
-  <input type="text" #landingType placeholder="Landing Page Type"/><br>
-  <select>
-    <option value="shopnow">Shop Now</option>
-    <option value="applynow">Apply Now</option>
-    <option value="booknow">Book Now</option>
-  </select>
-  <br>
-  <button (click)="addAdAuthoring(landingUrl.value, landingType.value)">Generate AMPHTML</button>
-</div>
-
 <app-ad-authoring></app-ad-authoring>

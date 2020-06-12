@@ -13,7 +13,7 @@ export class AdAuthoringService {
 
   addAdAuthoring(landingUrl: string, landingType: string) {
     this.adAuthoringState.setState({
-      adAuthorings: [...this.adAuthoringState.getValue().adAuthorings, {landingUrl, landingType}],
+      adAuthorings: [ {landingUrl, landingType}],
     });
   }
 

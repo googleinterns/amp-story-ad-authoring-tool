@@ -26,9 +26,4 @@ import { AdAuthoringService } from './ad-authoring/ad-authoring.service';
 export class AppComponent {
   title = 'amp-story-ad-authoring-tool';
 
-  constructor(private service: AdAuthoringService){}
-
-  addAdAuthoring(landingUrl: string, landingType: string) {
-      this.service.addAdAuthoring(landingUrl, landingType);
-  }
 }

@@ -11,9 +11,9 @@ export class AdAuthoringService {
 
   constructor(private readonly adAuthoringState: AdAuthoringStateContainer) {}
 
-  addAdAuthoring(landingUrl: string, landingType: string) {
+  addAdAuthoring(landingUrl: string, landingType: string, callToAction: string) {
     this.adAuthoringState.setState({
-      adAuthorings: [ {landingUrl, landingType}],
+      adAuthorings: [ {landingUrl, landingType, callToAction}],
     });
   }
 

@@ -47,7 +47,7 @@ describe('AdAuthoringComponent', () => {
   it('should have the correct number of options for landing type select', async () => {
     const landingTypeSelect = await loader.getHarness(
       MatSelectHarness.with({
-        selector: '.landingPage',
+        selector: '.landing-page',
       })
     );
 
@@ -60,7 +60,7 @@ describe('AdAuthoringComponent', () => {
   it('should click the AMP option', async () => {
     const landingTypeSelect = await loader.getHarness(
       MatSelectHarness.with({
-        selector: '.landingPage',
+        selector: '.landing-page',
       })
     );
     await landingTypeSelect.open();
@@ -74,7 +74,7 @@ describe('AdAuthoringComponent', () => {
   it('should have the correct number of options for call to action select', async () => {
     const callToActionSelect = await loader.getHarness(
       MatSelectHarness.with({
-        selector: '.callToAction',
+        selector: '.call-to-action',
       })
     );
 
@@ -87,7 +87,7 @@ describe('AdAuthoringComponent', () => {
   it('should click the Read Now option', async () => {
     const callToActionSelect = await loader.getHarness(
       MatSelectHarness.with({
-        selector: '.callToAction',
+        selector: '.call-to-action',
       })
     );
 
@@ -126,7 +126,7 @@ describe('AdAuthoringComponent', () => {
   it('changing landing type option should call updateLandingType function', async () => {
     const landingTypeSelect = await loader.getHarness(
       MatSelectHarness.with({
-        selector: '.landingPage',
+        selector: '.landing-page',
       })
     );
 
@@ -139,7 +139,7 @@ describe('AdAuthoringComponent', () => {
   it('changing call to action option should call updateCallToAction function', async () => {
     const callToActionSelect = await loader.getHarness(
       MatSelectHarness.with({
-        selector: '.callToAction',
+        selector: '.call-to-action',
       })
     );
 

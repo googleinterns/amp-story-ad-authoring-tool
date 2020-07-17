@@ -39,7 +39,7 @@
                 class="call-to-action"
                 (selectionChange)="updateCallToAction($event.value)">
                 <mat-option *ngFor="let callToActionValue of callToActionValues" 
-                    [value]="CallToActionMapping[callToActionValue]">
+                    [value]="callToActionValue">
                     {{CallToActionMapping[callToActionValue]}}
                 </mat-option>
             </mat-select>

@@ -21,7 +21,7 @@ import {
 export class AdAuthoringComponent {
   adAuthoringObs: Observable<AdAuthoringWorkflowState>;
 
-  landingPageUrl = '';
+  landingUrl = '';
 
   CallToActionMapping = CALL_TO_ACTION_DISPLAY_VALUES;
   callToActionValues = sortedCallToAction;

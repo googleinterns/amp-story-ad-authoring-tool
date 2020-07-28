@@ -11,9 +11,8 @@
             <mat-label>Landing Page URL</mat-label>
             <input matInput 
                 type="text" 
-                #landingUrl 
                 placeholder="Landing Page URL" 
-                [ngModel] = "landingPageUrl"
+                [ngModel] = "landingUrl"
                 (ngModelChange)="updateLandingUrl($event)"/>
         </mat-form-field>
     
@@ -39,7 +38,7 @@
                 class="call-to-action"
                 (selectionChange)="updateCallToAction($event.value)">
                 <mat-option *ngFor="let callToActionValue of callToActionValues" 
-                    [value]="callToActionValue">
+                    [value]="CallToActionMapping[callToActionValue]">
                     {{CallToActionMapping[callToActionValue]}}
                 </mat-option>
             </mat-select>

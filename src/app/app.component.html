@@ -4,6 +4,9 @@
     <app-asset-upload></app-asset-upload>
 </div>
 <div class="preview">
-    <app-preview></app-preview>
+    <!-- <ng-container *ngFor="let amphtml of ampHtmlObs | async";>
+        <app-preview [storyAMPHTML]="amphtml"></app-preview>
+    </ng-container> -->
+    <app-preview-area></app-preview-area>
 </div>
 

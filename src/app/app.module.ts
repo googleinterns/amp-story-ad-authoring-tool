@@ -31,7 +31,8 @@ import {AdAuthoringService} from './ad-authoring/ad-authoring.service';
 import {TopBarComponent} from './top-bar/top-bar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AssetUploadComponent} from './asset-upload/asset-upload.component';
-import {PreviewComponent} from './preview/preview.component';
+import {PreviewAreaComponent} from './preview-area/preview-area.component';
+import {PreviewComponent} from './preview-area/preview/preview.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {PreviewComponent} from './preview/preview.component';
     AdAuthoringComponent,
     TopBarComponent,
     AssetUploadComponent,
+    PreviewAreaComponent,
     PreviewComponent,
   ],
   imports: [

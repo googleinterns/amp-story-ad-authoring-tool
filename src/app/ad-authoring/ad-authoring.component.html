@@ -12,9 +12,12 @@
             <input matInput 
                 type="text" 
                 #landingUrl 
-                placeholder="Landing Page URL" 
+                placeholder="https://example.com" 
                 [ngModel] = "landingPageUrl"
-                (ngModelChange)="updateLandingUrl($event)"/>
+                (ngModelChange)="updateLandingUrl($event)"
+                [formControl]="url" required/>
+            <mat-error *ngIf="url.errors['required']">URL required</mat-error>
+            <mat-error *ngIf="url.errors['pattern']">Invalid URL</mat-error>
         </mat-form-field>
     
         <br>

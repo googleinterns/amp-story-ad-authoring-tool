@@ -10,6 +10,7 @@ import {
   LANDING_TYPE_DISPLAY_VALUES,
   sortedLandingType,
 } from './landing-type-values';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-ad-authoring',
@@ -24,6 +25,12 @@ export class AdAuthoringComponent {
 
   LandingTypeMapping = LANDING_TYPE_DISPLAY_VALUES;
   landingTypeValues = sortedLandingType;
+
+  validUrlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+  url = new FormControl('', [
+    Validators.required,
+    Validators.pattern(this.validUrlRegex),
+  ]);
 
   constructor(private service: AdAuthoringService) {}
 

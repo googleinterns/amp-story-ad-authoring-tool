@@ -17,7 +17,7 @@
 
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
@@ -53,6 +53,7 @@ import {PreviewComponent} from './preview-area/preview/preview.component';
     CommonModule,
     MatExpansionModule,
     MatButtonModule,
+    ReactiveFormsModule,
   ],
   exports: [MatInputModule, MatFormFieldModule, MatSelectModule],
   providers: [AdAuthoringService],

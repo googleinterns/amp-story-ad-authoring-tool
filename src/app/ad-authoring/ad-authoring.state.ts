@@ -29,7 +29,7 @@ export class AdAuthoringWorkflowStateContainer {
     const adAMPHTML =
       '"<!doctype html><html amp4ads><head><meta charset=\\"utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width,minimum-scale=1\\"><meta name=\\"amp-cta-type\\" content=\\"' +
       cta +
-      '\\"><meta name=\\"amp-cta-url\\" content=\\"https:\\/\\/' +
+      '\\"><meta name=\\"amp-cta-url\\" content=\\"' +
       landingPageUrl +
       '\\"><meta name=\\"amp-cta-landing-page-type\\" content=\\"' +
       landingPageType +
@@ -155,13 +155,13 @@ export class AdAuthoringWorkflowStateContainer {
   private state$: BehaviorSubject<
     AdAuthoringWorkflowState
   > = new BehaviorSubject({
-    landingUrl: 'www.amp.dev',
+    landingUrl: 'https://www.amp.dev',
     landingType: LandingTypeEnum.AMP,
     callToAction: CallToActionEnum.MORE,
     fileSrc: 'https://placekitten.com/300/250',
     AMPHTMLstring: this.generateAMPHTML(
       CallToActionEnum.MORE,
-      'www.amp.dev',
+      'https://www.amp.dev',
       LandingTypeEnum.AMP,
       'https://placekitten.com/300/250'
     ),

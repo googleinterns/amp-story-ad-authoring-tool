@@ -16,26 +16,39 @@ export interface AdAuthoringWorkflowState {
   providedIn: 'root',
 })
 export class AdAuthoringWorkflowStateContainer {
-  // adAMPHTML =
-  //   '<!doctype html><html amp4ads><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,minimum-scale=1"><meta name="amp-cta-type" content="LEARN_MORE"><meta name="amp-cta-url" content="https://www.amp.dev"><style amp4ads-boilerplate>body{visibility:hidden}</style><script async src="https://cdn.ampproject.org/amp4ads-v0.js"></script></head><body><p>Hello, fake ad with srcdoc</p><amp-img layout="fixed" height="250" width="300" src="https://placekitten.com/300/250"></amp-img></body></html>';
-
-  // TODO: replace cta with a better variable
   generateAMPHTML(
-    cta: string,
+    callToActionStr: string,
     landingPageUrl: string,
     landingPageType: string,
-    image: string
+    base64AssetStr: string,
+    assetFile: File
   ) {
-    const adAMPHTML =
+    let adAMPHTML =
       '"<!doctype html><html amp4ads><head><meta charset=\\"utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width,minimum-scale=1\\"><meta name=\\"amp-cta-type\\" content=\\"' +
-      cta +
+      callToActionStr +
       '\\"><meta name=\\"amp-cta-url\\" content=\\"' +
       landingPageUrl +
       '\\"><meta name=\\"amp-cta-landing-page-type\\" content=\\"' +
       landingPageType +
       '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p><amp-img layout=\\"fixed\\" height=\\"250\\" width=\\"300\\" src=\\"' +
-      image +
+      base64AssetStr +
       '\\"><\\/amp-img><\\/body><\\/html>"';
+
+    // if the file uploaded is a video
+    if (assetFile != null && assetFile.type.includes('video')) {
+      adAMPHTML =
+        '"<!doctype html><html amp4ads><head><meta charset=\\"utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width,minimum-scale=1\\"><meta name=\\"amp-cta-type\\" content=\\"' +
+        callToActionStr +
+        '\\"><meta name=\\"amp-cta-url\\" content=\\"' +
+        landingPageUrl +
+        '\\"><meta name=\\"amp-cta-landing-page-type\\" content=\\"' +
+        landingPageType +
+        '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><script async custom-element=\\"amp-video\\" src=\\"https:\\/\\/cdn.ampproject.org\\/v0\\/amp-video-0.1.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p><amp-video layout=\\"fill\\" height=\\"1920\\" width=\\"1080\\" autoplay loop> <source src=\\"' +
+        base64AssetStr +
+        '\\" type=\\"' +
+        assetFile.type +
+        '\\" \\/><\\/amp-video><\\/body><\\/html>"';
+    }
 
     const storyAMPHTML =
       `<!DOCTYPE html>
@@ -163,7 +176,8 @@ export class AdAuthoringWorkflowStateContainer {
       CallToActionEnum.MORE,
       'https://www.amp.dev',
       LandingTypeEnum.AMP,
-      'https://placekitten.com/300/250'
+      'https://placekitten.com/300/250',
+      null
     ),
   });
 
@@ -180,7 +194,8 @@ export class AdAuthoringWorkflowStateContainer {
       nextState.callToAction,
       nextState.landingUrl,
       nextState.landingType,
-      nextState.fileSrc
+      nextState.fileSrc,
+      nextState.file
     );
     nextState = {...nextState, AMPHTMLstring};
     this.state$.next(nextState);

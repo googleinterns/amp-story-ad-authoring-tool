@@ -18,7 +18,7 @@ describe('PreviewAreaComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create preview-area component', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,16 +1,16 @@
 .toolbar {
+    align-items: center;
+    background-color: white;
     border-top: 1px solid #e0e0e0;
     bottom: 0;
+    display: flex;
     height: 60px;
     left: 0%;
     overflow: hidden;
+    padding-left: 10px;
     position: fixed;
     width: 100%;
-    display: flex;
-    align-items: center;
     z-index: 100;
-    background-color: white;
-    padding-left: 10px;
 }
 
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {

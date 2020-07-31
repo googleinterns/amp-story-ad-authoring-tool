@@ -34,7 +34,7 @@ export class AdAuthoringWorkflowStateContainer {
       base64AssetStr +
       '\\"><\\/amp-img><\\/body><\\/html>"';
 
-    // if the file uploaded is a video
+    // if the file uploaded is a video (not image)
     if (assetFile != null && assetFile.type.includes('video')) {
       adAMPHTML =
         '"<!doctype html><html amp4ads><head><meta charset=\\"utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width,minimum-scale=1\\"><meta name=\\"amp-cta-type\\" content=\\"' +

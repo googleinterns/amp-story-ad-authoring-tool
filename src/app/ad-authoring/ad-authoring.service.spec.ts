@@ -21,21 +21,25 @@ describe('AdAuthoringService', () => {
 
   it('should get state', () => {
     const thisState = service.getAdAuthorings();
+
     expect(thisState).toEqual(state.getState());
   });
 
   it('should update the landing page url state', () => {
     service.updateLandingUrl('google.com');
+
     expect(state.getValue().landingUrl).toBe('google.com');
   });
 
   it('should update the landing page type state', () => {
     service.updateLandingType(LandingTypeEnum.AMP);
+
     expect(state.getValue().landingType).toBe('AMP');
   });
 
   it('should update the call to action state', () => {
     service.updateCallToAction(CallToActionEnum.ORDER_NOW);
+
     expect(state.getValue().callToAction).toBe('ORDER_NOW');
   });
 });

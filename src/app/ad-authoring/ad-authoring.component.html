@@ -38,7 +38,7 @@
                 class="call-to-action"
                 (selectionChange)="updateCallToAction($event.value)">
                 <mat-option *ngFor="let callToActionValue of callToActionValues" 
-                    [value]="CallToActionMapping[callToActionValue]">
+                    [value]="callToActionValue">
                     {{CallToActionMapping[callToActionValue]}}
                 </mat-option>
             </mat-select>
@@ -47,12 +47,6 @@
     
     <br>
 
-</div>
-<!-- TODO: Remove later - here for debugging purposes -->
-<div *ngIf="(adAuthoringObs | async) as adAuthoring">
-    Landing Page URL: {{adAuthoring.landingUrl}} <br>
-    Landing Page Type: {{adAuthoring.landingType}} <br>
-    Call to Action Text: {{adAuthoring.callToAction}}
 </div>
 
 <div class="toolbar">

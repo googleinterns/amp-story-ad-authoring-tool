@@ -7,6 +7,8 @@ export interface AdAuthoringWorkflowState {
   readonly landingUrl?: string;
   readonly landingType?: LandingTypeEnum;
   readonly callToAction?: CallToActionEnum;
+  readonly fileSrc?: string;
+  readonly file?: File;
 }
 // add a default state for the fields above
 @Injectable({

@@ -1,0 +1,21 @@
+<div class="asset-upload">
+    <mat-expansion-panel id="asset-upload-panel">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Asset Upload
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <button mat-raised-button 
+            color="primary" 
+            type="button" 
+            (click)="fileInput.click()">
+            <span>Upload</span>
+            <input #fileInput 
+                type="file" 
+                (change)="onFileInput($event)" 
+                name="filename"
+                accept="image/*,video/*"/>
+        </button>
+        <p *ngIf="file">{{file.name}}</p>
+    </mat-expansion-panel>
+</div>

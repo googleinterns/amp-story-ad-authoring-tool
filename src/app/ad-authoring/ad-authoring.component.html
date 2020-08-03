@@ -11,9 +11,8 @@
             <mat-label>Landing Page URL</mat-label>
             <input matInput 
                 type="text" 
-                #landingUrl 
                 placeholder="Landing Page URL" 
-                [ngModel] = "landingPageUrl"
+                [ngModel] = "landingUrl"
                 (ngModelChange)="updateLandingUrl($event)"/>
         </mat-form-field>
     

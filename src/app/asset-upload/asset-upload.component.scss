@@ -12,3 +12,15 @@ input {
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
     background-color: #1876d2;
 }
+
+div.button-filename {
+    display: flex;
+    flex-direction: row;
+    // justify-content: space-around;
+    align-items: center;
+}
+
+p {
+    margin-top: 10px;
+    margin-left: 15px
+}

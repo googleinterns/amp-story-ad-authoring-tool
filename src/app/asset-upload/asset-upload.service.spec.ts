@@ -23,7 +23,7 @@ describe('AssetUploadService', () => {
     expect(thisState).toEqual(state.getState());
   });
 
-  it('should update the assets state', () => {
+  it('should update the assets state and amp html should contain it', () => {
     const blob = new Blob([''], {type: 'image/png'});
     blob['lastModifiedDate'] = '';
     blob['name'] = 'filename';
@@ -33,5 +33,6 @@ describe('AssetUploadService', () => {
 
     expect(state.getValue().fileSrc).toBe('image.png');
     expect(state.getValue().file).toBe(fakeF);
+    expect(state.getValue().AMPHTMLstring).toContain(state.getValue().fileSrc);
   });
 });

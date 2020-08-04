@@ -16,8 +16,9 @@
                 [ngModel] = "landingPageUrl"
                 (ngModelChange)="updateLandingUrl($event)"
                 [formControl]="url" required/>
-            <mat-error *ngIf="url.errors['required']">URL required</mat-error>
-            <mat-error *ngIf="url.errors['pattern']">Invalid URL</mat-error>
+            <mat-error *ngIf="url.invalid">
+                {{getErrorMessage()}}
+            </mat-error>
         </mat-form-field>
     
         <br>

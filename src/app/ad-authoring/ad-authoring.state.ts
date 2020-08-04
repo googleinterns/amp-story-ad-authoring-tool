@@ -170,10 +170,10 @@ export class AdAuthoringWorkflowStateContainer {
   > = new BehaviorSubject({
     landingUrl: 'https://www.amp.dev',
     landingType: LandingTypeEnum.AMP,
-    callToAction: CallToActionEnum.MORE,
+    callToAction: CallToActionEnum.APPLY_NOW,
     fileSrc: 'https://placekitten.com/300/250',
     AMPHTMLstring: this.generateAMPHTML(
-      CallToActionEnum.MORE,
+      CallToActionEnum.APPLY_NOW,
       'https://www.amp.dev',
       LandingTypeEnum.AMP,
       'https://placekitten.com/300/250',

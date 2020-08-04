@@ -32,6 +32,13 @@ export class AdAuthoringComponent {
     Validators.pattern(this.validUrlRegex),
   ]);
 
+  getErrorMessage() {
+    if (this.url.hasError('required')) {
+      return 'You must enter a value';
+    }
+    return 'Invalid URL';
+  }
+
   constructor(private service: AdAuthoringService) {}
 
   updateLandingUrl(landingUrl: string) {

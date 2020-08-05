@@ -30,7 +30,7 @@ export class AdAuthoringWorkflowStateContainer {
       landingPageUrl +
       '\\"><meta name=\\"amp-cta-landing-page-type\\" content=\\"' +
       landingPageType +
-      '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p><amp-img layout=\\"fixed\\" height=\\"250\\" width=\\"300\\" src=\\"' +
+      '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><\\/head><body><amp-img layout=\\"fixed\\" height=\\"250\\" width=\\"300\\" src=\\"' +
       base64AssetStr +
       '\\"><\\/amp-img><\\/body><\\/html>"';
 
@@ -43,7 +43,7 @@ export class AdAuthoringWorkflowStateContainer {
         landingPageUrl +
         '\\"><meta name=\\"amp-cta-landing-page-type\\" content=\\"' +
         landingPageType +
-        '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><script async custom-element=\\"amp-video\\" src=\\"https:\\/\\/cdn.ampproject.org\\/v0\\/amp-video-0.1.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p><amp-video layout=\\"fill\\" height=\\"1920\\" width=\\"1080\\" autoplay loop> <source src=\\"' +
+        '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><script async custom-element=\\"amp-video\\" src=\\"https:\\/\\/cdn.ampproject.org\\/v0\\/amp-video-0.1.js\\"><\\/script><\\/head><body><amp-video layout=\\"fill\\" height=\\"1920\\" width=\\"1080\\" autoplay loop> <source src=\\"' +
         base64AssetStr +
         '\\" type=\\"' +
         assetFile.type +
@@ -112,49 +112,49 @@ export class AdAuthoringWorkflowStateContainer {
             </amp-story-grid-layer>
           </amp-story-page>
     
-          <amp-story-page next-page-no-ad id="three">
+          <amp-story-page id="three">
             <amp-story-grid-layer template="vertical">
               <h1>page three</h1>
             </amp-story-grid-layer>
           </amp-story-page>
     
-          <amp-story-page next-page-no-ad id="four">
+          <amp-story-page id="four">
             <amp-story-grid-layer template="vertical">
               <h1>page four</h1>
             </amp-story-grid-layer>
           </amp-story-page>
     
-          <amp-story-page next-page-no-ad id="five">
+          <amp-story-page id="five">
             <amp-story-grid-layer template="vertical">
               <h1>page five</h1>
             </amp-story-grid-layer>
           </amp-story-page>
     
-          <amp-story-page next-page-no-ad id="six">
+          <amp-story-page id="six">
             <amp-story-grid-layer template="vertical">
               <h1>page six</h1>
             </amp-story-grid-layer>
           </amp-story-page>
     
-          <amp-story-page next-page-no-ad id="seven">
+          <amp-story-page id="seven">
             <amp-story-grid-layer template="vertical">
               <h1>page seven</h1>
             </amp-story-grid-layer>
           </amp-story-page>
     
-          <amp-story-page next-page-no-ad id="eight">
+          <amp-story-page id="eight">
             <amp-story-grid-layer template="vertical">
               <h1>page eight</h1>
             </amp-story-grid-layer>
           </amp-story-page>
     
-          <amp-story-page next-page-no-ad id="nine">
+          <amp-story-page id="nine">
             <amp-story-grid-layer template="vertical">
               <h1>page nine</h1>
             </amp-story-grid-layer>
           </amp-story-page>
     
-          <amp-story-page next-page-no-ad id="ten">
+          <amp-story-page id="ten">
             <amp-story-grid-layer template="vertical">
               <h1>page ten</h1>
             </amp-story-grid-layer>

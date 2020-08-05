@@ -50,7 +50,6 @@ export class AdAuthoringComponent {
   }
 
   updateCallToAction(callToAction: CallToActionEnum) {
-    console.log('Updating call to action');
     this.service.updateCallToAction(callToAction);
   }
 }

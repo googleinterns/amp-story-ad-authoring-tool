@@ -33,6 +33,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AssetUploadComponent} from './asset-upload/asset-upload.component';
 import {PreviewAreaComponent} from './preview-area/preview-area.component';
 import {PreviewComponent} from './preview-area/preview/preview.component';
+import {DownloadComponent} from './download/download.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {PreviewComponent} from './preview-area/preview/preview.component';
     AssetUploadComponent,
     PreviewAreaComponent,
     PreviewComponent,
+    DownloadComponent,
   ],
   imports: [
     BrowserModule,

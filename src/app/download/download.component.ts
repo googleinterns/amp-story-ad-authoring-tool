@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
+import {AdAuthoringService} from '../ad-authoring/ad-authoring.service';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-download',
@@ -8,22 +10,22 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class DownloadComponent {
   fileUrl;
+  ampHtmlObs: Observable<string>;
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private service: AdAuthoringService) {
+    this.ampHtmlObs = service
+      .getAdAuthorings()
+      .pipe(map(state => state.AMPHTMLstring));
+  }
 
   downloadFile() {
-    // console.log("in the generate funtion");
+    // TODO: create a service that generates the AMP ad html instead of this dummy data
     const data = 'amp story ad html goes here';
-    // const blob = new Blob([data], { type: 'application/octet-stream' });
-
-    // this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
-
-    window.URL = window.URL || window.webkitURL;
     const a = document.createElement('a');
     const blob = new Blob([data], {type: 'application/octet-stream'});
     const url = window.URL.createObjectURL(blob);
     document.body.appendChild(a);
-    // a.style = "display: none";
+    a.style.display = 'none';
     a.href = url;
     a.download = 'file.txt';
     a.click();

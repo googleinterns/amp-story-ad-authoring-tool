@@ -43,7 +43,11 @@ export class AdAuthoringWorkflowStateContainer {
         landingPageUrl +
         '\\"><meta name=\\"amp-cta-landing-page-type\\" content=\\"' +
         landingPageType +
-        '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><script async custom-element=\\"amp-video\\" src=\\"https:\\/\\/cdn.ampproject.org\\/v0\\/amp-video-0.1.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p>"';
+        '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><script async custom-element=\\"amp-video\\" src=\\"https:\\/\\/cdn.ampproject.org\\/v0\\/amp-video-0.1.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p> <amp-video layout=\\"fill\\" height=\\"1920\\" width=\\"1080\\" autoplay loop> <source src=\\"' +
+        base64AssetStr +
+        '\\" type=\\"' +
+        assetFile.type +
+        '\\" \\/><\\/amp-video><\\/body><\\/html>"';
     }
 
     // const adHtml =

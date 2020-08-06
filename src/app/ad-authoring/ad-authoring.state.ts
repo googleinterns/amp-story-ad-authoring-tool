@@ -23,53 +23,33 @@ export class AdAuthoringWorkflowStateContainer {
     base64AssetStr: string,
     assetFile: File
   ) {
-    let adAMPHTML =
+    const adHtml =
       '"<!doctype html><html amp4ads><head><meta charset=\\"utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width,minimum-scale=1\\"><meta name=\\"amp-cta-type\\" content=\\"' +
       callToActionStr +
       '\\"><meta name=\\"amp-cta-url\\" content=\\"' +
       landingPageUrl +
       '\\"><meta name=\\"amp-cta-landing-page-type\\" content=\\"' +
       landingPageType +
-      '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p><amp-img layout=\\"fixed\\" height=\\"250\\" width=\\"300\\" src=\\"' +
+      '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><script async custom-element=\\"amp-video\\" src=\\"https:\\/\\/cdn.ampproject.org\\/v0\\/amp-video-0.1.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p>';
+
+    const imageHtml =
+      '<amp-img layout=\\"fixed\\" height=\\"250\\" width=\\"300\\" src=\\"' +
       base64AssetStr +
       '\\"><\\/amp-img><\\/body><\\/html>"';
 
-    // if the file uploaded is a video (not image)
-    if (assetFile != null && assetFile.type.includes('video')) {
-      adAMPHTML =
-        '"<!doctype html><html amp4ads><head><meta charset=\\"utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width,minimum-scale=1\\"><meta name=\\"amp-cta-type\\" content=\\"' +
-        callToActionStr +
-        '\\"><meta name=\\"amp-cta-url\\" content=\\"' +
-        landingPageUrl +
-        '\\"><meta name=\\"amp-cta-landing-page-type\\" content=\\"' +
-        landingPageType +
-        '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><script async custom-element=\\"amp-video\\" src=\\"https:\\/\\/cdn.ampproject.org\\/v0\\/amp-video-0.1.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p> <amp-video layout=\\"fill\\" height=\\"1920\\" width=\\"1080\\" autoplay loop> <source src=\\"' +
+    const videoHtml = assetFile
+      ? '<amp-video layout=\\"fill\\" height=\\"1920\\" width=\\"1080\\" autoplay loop> <source src=\\"' +
         base64AssetStr +
         '\\" type=\\"' +
         assetFile.type +
-        '\\" \\/><\\/amp-video><\\/body><\\/html>"';
-    }
+        '\\" \\/><\\/amp-video><\\/body><\\/html>"'
+      : '';
 
-    // const adHtml =
-    //   '"<!doctype html><html amp4ads><head><meta charset=\\"utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width,minimum-scale=1\\"><meta name=\\"amp-cta-type\\" content=\\"' +
-    //   callToActionStr +
-    //   '\\"><meta name=\\"amp-cta-url\\" content=\\"' +
-    //   landingPageUrl +
-    //   '\\"><meta name=\\"amp-cta-landing-page-type\\" content=\\"' +
-    //   landingPageType +
-    //   '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p>';
+    const assetHtml =
+      assetFile && assetFile.type.includes('video') ? videoHtml : imageHtml;
+    const adAmpHtml = adHtml + assetHtml;
 
-    // const imageHtml =
-    //   '<amp-img layout=\\"fixed\\" height=\\"250\\" width=\\"300\\" src=\\"' +
-    //   base64AssetStr +
-    //   '\\"><\\/amp-img><\\/body><\\/html>"';
-
-    // const assetHtml = (assetFile != null && assetFile.type.includes('video')) ? '<amp-video layout=\\"fill\\" height=\\"1920\\" width=\\"1080\\" autoplay loop> <source src=\\"' + base64AssetStr + '\\" type=\\"' + assetFile.type + '\\" \\/><\\/amp-video><\\/body><\\/html>"' : imageHtml;
-
-    // const adAmpHtml = adHtml + assetHtml;
-
-    const storyAMPHTML =
-      `<!DOCTYPE html>
+    const storyAMPHTML = `<!DOCTYPE html>
     <html amp="🤠-invalid" lang="en">
       <head>
         <meta charset="utf-8" />
@@ -88,9 +68,7 @@ export class AdAuthoringWorkflowStateContainer {
               {
                 "ad-attributes": {
                   "type": "fake",
-                  "srcdoc": ` +
-      adAMPHTML +
-      `,
+                  "srcdoc": ${adAmpHtml},
                   "a4a-conversion": true
                 }
               }

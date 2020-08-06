@@ -14,6 +14,6 @@ export class PreviewAreaComponent {
   constructor(private service: AdAuthoringService) {
     this.ampHtmlObs = service
       .getAdAuthorings()
-      .pipe(map(state => [state.AMPHTMLstring]));
+      .pipe(map(state => [state.AmpHtml]));
   }
 }

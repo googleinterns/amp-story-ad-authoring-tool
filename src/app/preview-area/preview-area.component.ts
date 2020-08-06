@@ -9,7 +9,7 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./preview-area.component.scss'],
 })
 export class PreviewAreaComponent {
-  ampHtmlObs: Observable<Array<string>>;
+  ampHtmlObs: Observable<ReadonlyArray<string>>;
 
   constructor(private service: AdAuthoringService) {
     // AmpHtml must be mapped into an array in order to use an aync pipe in the template

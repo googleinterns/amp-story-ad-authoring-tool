@@ -28,11 +28,11 @@ describe('DownloadComponent', () => {
   });
 
   it('should call downloadFile when the download button is clicked', async () => {
-    spyOn(component, 'downloadFile');
+    spyOn(component, 'downloadFileZip');
     const button = await loader.getHarness(MatButtonHarness);
 
     await button.click();
 
-    expect(component.downloadFile).toHaveBeenCalled();
+    expect(component.downloadFileZip).toHaveBeenCalled();
   });
 });

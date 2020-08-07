@@ -65,10 +65,10 @@ describe('AdAuthoringComponent', () => {
     );
     await landingTypeSelect.open();
 
-    await landingTypeSelect.clickOptions({text: 'AMP'});
+    await landingTypeSelect.clickOptions({text: 'Non-AMP'});
 
     const selectedText = await landingTypeSelect.getValueText();
-    expect(selectedText).toBe('AMP');
+    expect(selectedText).toBe('Non-AMP');
   });
 
   it('should have the correct number of options for call to action select', async () => {
@@ -92,8 +92,8 @@ describe('AdAuthoringComponent', () => {
     );
 
     await callToActionSelect.open();
-
     await callToActionSelect.clickOptions({text: 'Read Now'});
+
     const selectedText = await callToActionSelect.getValueText();
     expect(selectedText).toBe('Read Now');
   });
@@ -109,18 +109,18 @@ describe('AdAuthoringComponent', () => {
   it('should set value correctly for landing page url input', async () => {
     const landingUrlInput = await loader.getHarness(MatInputHarness);
 
-    await landingUrlInput.setValue('google.com');
+    await landingUrlInput.setValue('https://google.com');
 
     const value = await landingUrlInput.getValue();
-    expect(value).toBe('google.com');
+    expect(value).toBe('https://google.com');
   });
 
   it('changing landing url should call updateLandingUrl function', async () => {
     const landingUrlInput = await loader.getHarness(MatInputHarness);
 
-    await landingUrlInput.setValue('google.com');
+    await landingUrlInput.setValue('https://google.com');
 
-    expect(service.updateLandingUrl).toHaveBeenCalledWith('google.com');
+    expect(service.updateLandingUrl).toHaveBeenCalledWith('https://google.com');
   });
 
   it('changing landing type option should call updateLandingType function', async () => {

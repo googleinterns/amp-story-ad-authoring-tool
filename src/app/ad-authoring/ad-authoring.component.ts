@@ -12,13 +12,15 @@ import {
 } from './landing-type-values';
 import {FormControl, Validators} from '@angular/forms';
 
+const validUrlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+
 @Component({
   selector: 'app-ad-authoring',
   templateUrl: './ad-authoring.component.html',
   styleUrls: ['./ad-authoring.component.scss'],
 })
 export class AdAuthoringComponent {
-  landingPageUrl = '';
+  landingUrl = '';
 
   CallToActionMapping = CALL_TO_ACTION_DISPLAY_VALUES;
   callToActionValues = sortedCallToAction;
@@ -26,17 +28,15 @@ export class AdAuthoringComponent {
   LandingTypeMapping = LANDING_TYPE_DISPLAY_VALUES;
   landingTypeValues = sortedLandingType;
 
-  validUrlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
-  url = new FormControl('', [
+  urlControl = new FormControl('', [
     Validators.required,
-    Validators.pattern(this.validUrlRegex),
+    Validators.pattern(validUrlRegex),
   ]);
 
   getErrorMessage() {
-    if (this.url.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return 'Invalid URL';
+    return this.urlControl.hasError('required')
+      ? 'You must enter a value'
+      : 'Invalid URL';
   }
 
   constructor(private service: AdAuthoringService) {}

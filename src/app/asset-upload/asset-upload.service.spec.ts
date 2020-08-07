@@ -33,6 +33,16 @@ describe('AssetUploadService', () => {
 
     expect(state.getValue().fileSrc).toBe('image.png');
     expect(state.getValue().file).toBe(fakeF);
-    expect(state.getValue().AMPHTMLstring).toContain(state.getValue().fileSrc);
+  });
+
+  it('AMPHTML should contain the updated asset state value', () => {
+    const blob = new Blob([''], {type: 'image/png'});
+    blob['lastModifiedDate'] = '';
+    blob['name'] = 'filename';
+    const fakeF = <File>blob;
+
+    service.updateAssets('image.png', fakeF);
+
+    expect(state.getValue().AmpHtml).toContain(state.getValue().fileSrc);
   });
 });

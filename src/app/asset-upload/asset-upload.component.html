@@ -7,15 +7,15 @@
         </mat-expansion-panel-header>
         <div class="button-filename">
             <button mat-raised-button 
-            color="primary" 
-            type="button" 
-            (click)="fileInput.click()">
+                    color="primary" 
+                    type="button" 
+                    (click)="fileInput.click()">
             <span>Upload</span>
             <input #fileInput 
-                type="file" 
-                (change)="onFileInput($event)" 
-                name="filename"
-                accept="image/*,video/*"/>
+                   type="file" 
+                   (change)="onFileInput($event)" 
+                   name="filename"
+                   accept="image/*,video/*"/>
             </button>
             <p *ngIf="file">{{file.name}}</p>
         </div>

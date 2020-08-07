@@ -25,30 +25,39 @@ describe('AdAuthoringService', () => {
     expect(thisState).toEqual(state.getState());
   });
 
-  it('should update the landing page url state and amp html should contain it', () => {
+  it('should update the landing page url', () => {
     service.updateLandingUrl('google.com');
 
     expect(state.getValue().landingUrl).toBe('google.com');
-    expect(state.getValue().AMPHTMLstring).toContain(
-      state.getValue().landingUrl
-    );
   });
 
-  it('should update the landing page type state and amp html should contain it', () => {
+  it('AMPHTML should contain the updated landingUrl value', () => {
+    service.updateLandingUrl('google.com');
+
+    expect(state.getValue().AmpHtml).toContain(state.getValue().landingUrl);
+  });
+
+  it('should update the landing page type state', () => {
     service.updateLandingType(LandingTypeEnum.AMP);
 
     expect(state.getValue().landingType).toBe('AMP');
-    expect(state.getValue().AMPHTMLstring).toContain(
-      state.getValue().landingType
-    );
   });
 
-  it('should update the call to action state and amp html should contain it', () => {
+  it('AMPHTML should contain the updated landingType value', () => {
+    service.updateLandingType(LandingTypeEnum.AMP);
+
+    expect(state.getValue().AmpHtml).toContain(state.getValue().landingType);
+  });
+
+  it('should update the call to action state', () => {
     service.updateCallToAction(CallToActionEnum.ORDER_NOW);
 
     expect(state.getValue().callToAction).toBe('ORDER_NOW');
-    expect(state.getValue().AMPHTMLstring).toContain(
-      state.getValue().callToAction
-    );
+  });
+
+  it('AMPHTML should contain the updated callToAction value', () => {
+    service.updateCallToAction(CallToActionEnum.ORDER_NOW);
+
+    expect(state.getValue().AmpHtml).toContain(state.getValue().callToAction);
   });
 });

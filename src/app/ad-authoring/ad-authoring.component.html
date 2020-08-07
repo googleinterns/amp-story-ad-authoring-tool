@@ -12,7 +12,7 @@
             <input matInput 
                    type="text" 
                    placeholder="https://example.com" 
-                   [ngModel] = "landingPageUrl"
+                   [ngModel] = "landingUrl"
                    (ngModelChange)="updateLandingUrl($event)"
                    [formControl]="urlControl"
                    required/>
@@ -56,5 +56,5 @@
 
 <div class="toolbar">
     <!-- TODO: Create new component for this button -->
-    <button mat-raised-button color="primary">DOWNLOAD AMPHTML</button>
+    <button mat-raised-button color="primary">DOWNLOAD ZIP</button>
 </div>

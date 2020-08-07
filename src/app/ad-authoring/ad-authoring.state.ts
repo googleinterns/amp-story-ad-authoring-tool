@@ -18,8 +18,8 @@ export interface AdAuthoringWorkflowState {
 export class AdAuthoringWorkflowStateContainer {
   generateAMPHTML(
     callToActionStr: string,
-    landingPageUrl: string,
-    landingPageType: string,
+    landingUrl: string,
+    landingType: string,
     base64AssetStr: string,
     assetFile: File
   ) {
@@ -27,9 +27,9 @@ export class AdAuthoringWorkflowStateContainer {
       '"<!doctype html><html amp4ads><head><meta charset=\\"utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width,minimum-scale=1\\"><meta name=\\"amp-cta-type\\" content=\\"' +
       callToActionStr +
       '\\"><meta name=\\"amp-cta-url\\" content=\\"' +
-      landingPageUrl +
+      landingUrl +
       '\\"><meta name=\\"amp-cta-landing-page-type\\" content=\\"' +
-      landingPageType +
+      landingType +
       '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><script async custom-element=\\"amp-video\\" src=\\"https:\\/\\/cdn.ampproject.org\\/v0\\/amp-video-0.1.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p>';
 
     const imageHtml =

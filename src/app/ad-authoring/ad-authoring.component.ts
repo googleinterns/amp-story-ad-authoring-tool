@@ -20,7 +20,7 @@ const validUrlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z
   styleUrls: ['./ad-authoring.component.scss'],
 })
 export class AdAuthoringComponent {
-  landingPageUrl = '';
+  landingUrl = '';
 
   CallToActionMapping = CALL_TO_ACTION_DISPLAY_VALUES;
   callToActionValues = sortedCallToAction;

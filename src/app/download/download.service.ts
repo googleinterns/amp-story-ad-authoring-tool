@@ -9,6 +9,12 @@ export class DownloadService {
     private readonly adAuthoringState: AdAuthoringWorkflowStateContainer
   ) {}
 
+  getAsset() {
+    const assetBase64 = this.adAuthoringState.getValue().fileSrc;
+    const file = this.adAuthoringState.getValue().file;
+    return [assetBase64, file.name];
+  }
+
   generateHtmlForDownload() {
     const landingUrl = this.adAuthoringState.getValue().landingUrl;
     const landingType = this.adAuthoringState.getValue().landingType;

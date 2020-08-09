@@ -13,7 +13,7 @@ export class DownloadComponent {
   downloadFileZip() {
     const zip = new JSZip();
     const data = this.service.generateHtmlForDownload();
-    zip.file('AmpAd.txt', data);
+    zip.file('AmpAd.html', data);
     const asset = this.service.getAsset();
     const assetBase64 = asset[0];
     // strip off everything befor the first comma (data:image/png;base64,)

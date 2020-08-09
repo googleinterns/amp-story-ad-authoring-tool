@@ -3,7 +3,6 @@ import {Observable, BehaviorSubject} from 'rxjs';
 import {CallToActionEnum} from './call-to-action';
 import {LandingTypeEnum} from './landing-type-values';
 import {generateStoryAmpHtml} from './generate-amp-html';
-import {generateAdAmpHtml} from './generate-amp-html';
 
 export interface AdAuthoringWorkflowState {
   readonly landingUrl?: string;
@@ -25,15 +24,13 @@ export class AdAuthoringWorkflowStateContainer {
     landingType: LandingTypeEnum.AMP,
     callToAction: CallToActionEnum.APPLY_NOW,
     fileSrc: 'https://placekitten.com/300/250',
-    AmpHtml: generateStoryAmpHtml(
-      generateAdAmpHtml(
-        CallToActionEnum.APPLY_NOW,
-        'https://www.amp.dev',
-        LandingTypeEnum.AMP,
-        'https://placekitten.com/300/250',
-        null
-      )
-    ),
+    AmpHtml: generateStoryAmpHtml({
+      callToActionStr: CallToActionEnum.APPLY_NOW,
+      landingUrl: 'https://www.amp.dev',
+      landingType: LandingTypeEnum.AMP,
+      base64AssetStr: 'https://placekitten.com/300/250',
+      assetFile: null,
+    }),
   });
 
   getValue(): AdAuthoringWorkflowState {
@@ -45,15 +42,13 @@ export class AdAuthoringWorkflowStateContainer {
   }
 
   setState(nextState: AdAuthoringWorkflowState): void {
-    const AmpHtml = generateStoryAmpHtml(
-      generateAdAmpHtml(
-        nextState.callToAction,
-        nextState.landingUrl,
-        nextState.landingType,
-        nextState.fileSrc,
-        nextState.file
-      )
-    );
+    const AmpHtml = generateStoryAmpHtml({
+      callToActionStr: nextState.callToAction,
+      landingUrl: nextState.landingUrl,
+      landingType: nextState.landingType,
+      base64AssetStr: nextState.fileSrc,
+      assetFile: nextState.file,
+    });
     nextState = {...nextState, AmpHtml};
     this.state$.next(nextState);
   }

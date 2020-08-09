@@ -14,12 +14,14 @@ export class DownloadComponent {
     const zip = new JSZip();
     const data = this.service.generateHtmlForDownload();
     zip.file('AmpAd.html', data);
+
     const asset = this.service.getAsset();
     const assetBase64 = asset[0];
-    // strip off everything befor the first comma (data:image/png;base64,)
+    // strip off everything befor the first comma (data:image/png;base64,) to get raw base64 encoding
     const assetBase64Stripped = assetBase64.replace(/^[^,]+, */, '');
     const assetFileName = asset[1];
     zip.file(assetFileName, assetBase64Stripped, {base64: true});
+
     zip.generateAsync({type: 'blob'}).then(function (content) {
       const objectUrl: string = URL.createObjectURL(content);
       const a: any = document.createElement('a');

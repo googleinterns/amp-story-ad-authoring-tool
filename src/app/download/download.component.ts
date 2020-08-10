@@ -7,19 +7,19 @@ import {DownloadService} from './download.service';
   styleUrls: ['./download.component.scss'],
 })
 export class DownloadComponent {
-  constructor(private service: DownloadService) {}
+  constructor(private downloadService: DownloadService) {}
 
   downloadFile() {
-    const data = this.service.generateHtmlForDownload();
+    const data = this.downloadService.generateHtmlForDownload();
     const blob = new Blob([data], {type: 'application/octet-stream'});
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.style.display = 'none';
-    a.href = url;
-    a.download = 'file.txt';
-    a.click();
+    const downloadLink = document.createElement('a');
+    document.body.appendChild(downloadLink);
+    downloadLink.style.display = 'none';
+    downloadLink.href = url;
+    downloadLink.download = 'file.txt';
+    downloadLink.click();
     window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
+    document.body.removeChild(downloadLink);
   }
 }

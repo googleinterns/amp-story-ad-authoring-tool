@@ -52,8 +52,7 @@ export class DownloadService {
         <\/body>
       <\/html>`
       : ``;
-    const assetHtml =
-      file && file.type.includes('video') ? videoHtml : imageHtml;
+    const assetHtml = file?.type.includes('video') ? videoHtml : imageHtml;
     const adAmpHtml = adHtml + assetHtml;
 
     return adAmpHtml;

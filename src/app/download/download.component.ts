@@ -16,22 +16,22 @@ export class DownloadComponent {
     zip.file('AmpAd.html', data);
 
     const asset = this.service.getAsset();
-    const assetBase64 = asset[0];
+    const assetBase64 = asset.base64;
     // strip off everything befor the first comma (data:image/png;base64,) to get raw base64 encoding
     const assetBase64Stripped = assetBase64.replace(/^[^,]+, */, '');
-    const assetFileName = asset[1];
+    const assetFileName = asset.fileName;
     zip.file(assetFileName, assetBase64Stripped, {base64: true});
 
     zip.generateAsync({type: 'blob'}).then(function (content) {
       const objectUrl: string = URL.createObjectURL(content);
-      const a: any = document.createElement('a');
-      document.body.appendChild(a);
-      a.style.display = 'none';
-      a.href = objectUrl;
-      a.download = 'AmpAd.zip';
-      a.click();
+      const downloadLink = document.createElement('a');
+      document.body.appendChild(downloadLink);
+      downloadLink.style.display = 'none';
+      downloadLink.href = objectUrl;
+      downloadLink.download = 'AmpAd.zip';
+      downloadLink.click();
       window.URL.revokeObjectURL(objectUrl);
-      document.body.removeChild(a);
+      document.body.removeChild(downloadLink);
     });
   }
 }

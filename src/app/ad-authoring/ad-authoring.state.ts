@@ -30,24 +30,28 @@ export class AdAuthoringWorkflowStateContainer {
       landingUrl +
       '\\"><meta name=\\"amp-cta-landing-page-type\\" content=\\"' +
       landingType +
-      '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><script async custom-element=\\"amp-video\\" src=\\"https:\\/\\/cdn.ampproject.org\\/v0\\/amp-video-0.1.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p>';
+      '\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script>';
+
+    const ampVideoRuntime =
+      '<script async custom-element=\\"amp-video\\" src=\\"https:\\/\\/cdn.ampproject.org\\/v0\\/amp-video-0.1.js\\"><\\/script>';
 
     const imageHtml =
-      '<amp-img layout=\\"fixed\\" height=\\"250\\" width=\\"300\\" src=\\"' +
+      '<\\/head><body><amp-img layout=\\"fixed\\" height=\\"250\\" width=\\"300\\" src=\\"' +
       base64AssetStr +
       '\\"><\\/amp-img><\\/body><\\/html>"';
 
     const videoHtml = assetFile
-      ? '<amp-video layout=\\"fill\\" height=\\"1920\\" width=\\"1080\\" autoplay loop> <source src=\\"' +
+      ? '<\\/head><body><amp-video layout=\\"fill\\" height=\\"1920\\" width=\\"1080\\" autoplay loop> <source src=\\"' +
         base64AssetStr +
         '\\" type=\\"' +
         assetFile.type +
         '\\" \\/><\\/amp-video><\\/body><\\/html>"'
       : '';
 
-    const assetHtml =
-      assetFile && assetFile.type.includes('video') ? videoHtml : imageHtml;
-    const adAmpHtml = adHtml + assetHtml;
+    const adAmpHtml =
+      assetFile && assetFile.type.includes('video')
+        ? adHtml + ampVideoRuntime + videoHtml
+        : adHtml + imageHtml;
 
     const storyAMPHTML = `<!DOCTYPE html>
     <html amp="🤠-invalid" lang="en">

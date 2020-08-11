@@ -10,7 +10,10 @@ export class DownloadService {
   ) {}
 
   getDisabledVal() {
-    if (this.adAuthoringState.getValue().file == null) {
+    const file = this.adAuthoringState.getValue().file;
+    const landingUrl = this.adAuthoringState.getValue().landingUrl;
+
+    if (file == null || landingUrl == null) {
       return true;
     }
     return false;

@@ -30,10 +30,6 @@ export class DownloadService {
     const file = this.adAuthoringState.getValue().file;
     const assetPath = file.name;
 
-    // TODO:
-    // If anything is undefined e.g the asset, make sure to send an error message
-    // Instead of generating amp html here, call the generateAmpHtml() from ../ad-authoring/generate-amp-html
-
     const adHtml = `
       <!doctype html>
       <html amp4ads>

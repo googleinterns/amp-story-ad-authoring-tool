@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import {DownloadService} from './download.service';
 import * as JSZip from 'jszip';
+import {AdAuthoringService} from '../ad-authoring/ad-authoring.service';
+import {Observable} from 'rxjs';
+import {AdAuthoringWorkflowState} from '../ad-authoring/ad-authoring.state';
 
 @Component({
   selector: 'app-download',
@@ -9,8 +12,17 @@ import * as JSZip from 'jszip';
 })
 export class DownloadComponent {
   disabledVal = false;
+  adAuthoringObs: Observable<AdAuthoringWorkflowState>;
 
-  constructor(private downloadService: DownloadService) {}
+  constructor(
+    private downloadService: DownloadService,
+    private adAuthoringService: AdAuthoringService
+  ) {
+    this.adAuthoringObs = adAuthoringService.getAdAuthorings();
+    this.adAuthoringObs.subscribe(
+      () => (this.disabledVal = downloadService.getDisabledVal())
+    );
+  }
 
   downloadFileZip() {
     const zip = new JSZip();

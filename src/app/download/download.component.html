@@ -1,5 +1,7 @@
 <div class="toolbar">
-    <button mat-raised-button color="primary" (click)="downloadFileZip()">
+    <button mat-raised-button color="primary" 
+            (click)="downloadFileZip()"
+            [disabled]="disabledVal">
         <span>DOWNLOAD AMPHTML</span>
     </button>
 </div>

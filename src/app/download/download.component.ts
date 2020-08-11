@@ -8,6 +8,8 @@ import * as JSZip from 'jszip';
   styleUrls: ['./download.component.scss'],
 })
 export class DownloadComponent {
+  disabledVal = false;
+
   constructor(private downloadService: DownloadService) {}
 
   downloadFileZip() {

@@ -13,7 +13,7 @@ export class DownloadComponent {
   downloadFileZip() {
     const zip = new JSZip();
     const data = this.service.generateHtmlForDownload();
-    zip.file('AmpAd.html', data);
+    zip.file('index.html', data);
 
     const asset = this.service.getAsset();
     const assetBase64 = asset.base64;

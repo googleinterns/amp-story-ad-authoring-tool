@@ -41,7 +41,7 @@ export function generateStoryAmpHtml(ampHtml: generateAmpHtmlParams) {
   const adAmpHtml = generateAdAmpHtml({
     callToActionStr: ampHtml.callToActionStr,
     landingUrl: ampHtml.landingUrl,
-    landingType: ampHtml.landingUrl,
+    landingType: ampHtml.landingType,
     base64AssetStr: ampHtml.base64AssetStr,
     assetFile: ampHtml.assetFile,
   });

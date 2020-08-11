@@ -43,6 +43,6 @@ describe('AssetUploadService', () => {
 
     service.updateAssets('image.png', fakeF);
 
-    expect(state.getValue().AmpHtml).toContain(state.getValue().fileSrc);
+    expect(state.getValue().ampHtml).toContain(state.getValue().fileSrc);
   });
 });

@@ -9,6 +9,13 @@ export class DownloadService {
     private readonly adAuthoringState: AdAuthoringWorkflowStateContainer
   ) {}
 
+  getDisabledVal() {
+    if (this.adAuthoringState.getValue().file == null) {
+      return true;
+    }
+    return false;
+  }
+
   getAsset() {
     return this.adAuthoringState.getValue().file;
   }

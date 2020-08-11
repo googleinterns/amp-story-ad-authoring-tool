@@ -10,15 +10,7 @@ export class DownloadService {
   ) {}
 
   getAsset() {
-    interface assetObject {
-      base64: string;
-      fileName: string;
-    }
-    const asset: assetObject = {
-      base64: this.adAuthoringState.getValue().fileSrc,
-      fileName: this.adAuthoringState.getValue().file.name,
-    };
-    return asset;
+    return this.adAuthoringState.getValue().file;
   }
 
   generateHtmlForDownload() {

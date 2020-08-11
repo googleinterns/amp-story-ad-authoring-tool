@@ -20,11 +20,7 @@ export class AssetUploadComponent {
 
   onFileInput(fileInput: any) {
     this.file = fileInput.target.files[0];
-    const reader = new FileReader();
-    reader.onload = (loadEvent: any) => {
-      this.rawAssetBase64 = loadEvent.target.result;
-      this.service.updateAssets(this.rawAssetBase64, this.file);
-    };
-    reader.readAsDataURL(this.file);
+    const imageSrc = URL.createObjectURL(this.file);
+    this.service.updateAssets(imageSrc, this.file);
   }
 }

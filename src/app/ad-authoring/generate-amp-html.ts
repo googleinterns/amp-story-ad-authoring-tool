@@ -2,8 +2,7 @@ export interface generateAmpHtmlParams {
   readonly callToActionStr: string;
   readonly landingUrl: string;
   readonly landingType: string;
-  readonly assetSrc?: string;
-  readonly assetFilePath?: string;
+  readonly assetSrc: string;
   readonly assetFile: File;
 }
 
@@ -48,8 +47,7 @@ export function generateStoryAmpHtml(ampHtml: generateAmpHtmlParams) {
     assetSrc: ampHtml.assetSrc,
     assetFile: ampHtml.assetFile,
   });
-  const storyAMPHTML =
-    `<!DOCTYPE html>
+  const storyAmpHtml = `<!DOCTYPE html>
     <html amp="🤠-invalid" lang="en">
       <head>
         <meta charset="utf-8" />
@@ -68,9 +66,7 @@ export function generateStoryAmpHtml(ampHtml: generateAmpHtmlParams) {
               {
                 "ad-attributes": {
                   "type": "fake",
-                  "srcdoc": ` +
-    adAmpHtml +
-    `,
+                  "srcdoc": ${adAmpHtml},
                   "a4a-conversion": true
                 }
               }
@@ -160,5 +156,5 @@ export function generateStoryAmpHtml(ampHtml: generateAmpHtmlParams) {
         </amp-story>
       </body>
     </html>`;
-  return storyAMPHTML;
+  return storyAmpHtml;
 }

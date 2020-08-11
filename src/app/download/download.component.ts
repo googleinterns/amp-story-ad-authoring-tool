@@ -8,14 +8,14 @@ import * as JSZip from 'jszip';
   styleUrls: ['./download.component.scss'],
 })
 export class DownloadComponent {
-  constructor(private service: DownloadService) {}
+  constructor(private downloadService: DownloadService) {}
 
   downloadFileZip() {
     const zip = new JSZip();
-    const data = this.service.generateHtmlForDownload();
+    const data = this.downloadService.generateHtmlForDownload();
     zip.file('index.html', data);
 
-    const asset = this.service.getAsset();
+    const asset = this.downloadService.getAsset();
     const assetBase64 = asset.base64;
     // strip off everything befor the first comma (data:image/png;base64,) to get raw base64 encoding
     const assetBase64Stripped = assetBase64.replace(/^[^,]+, */, '');

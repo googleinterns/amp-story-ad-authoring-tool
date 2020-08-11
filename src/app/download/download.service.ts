@@ -44,29 +44,33 @@ export class DownloadService {
           <style amp4ads-boilerplate>
             body{visibility:hidden}
           <\/style>
-          <script async src=\"https:\/\/cdn.ampproject.org\/amp4ads-v0.js\">
-          <\/script>
-          <script async custom-element=\"amp-video\" src=\"https:\/\/cdn.ampproject.org\/v0\/amp-video-0.1.js\">
-          <\/script>
-        <\/head>`;
+          <script async src=\"https:\/\/cdn.ampproject.org\/amp4ads-v0.js\"><\/script>`;
+
+    const ampVideoRuntime = `
+          <script async custom-element=\"amp-video\" src=\"https:\/\/cdn.ampproject.org\/v0\/amp-video-0.1.js\"><\/script>`;
+
     const imageHtml = `
-        <body>
-          <amp-img layout=\"fixed\" height=\"250\" width=\"300\" src=\".\/${assetPath}\">
-          <\/amp-img>
-        <\/body>
+        <\/head>
+          <body>
+            <amp-img layout=\"fixed\" height=\"250\" width=\"300\" src=\"${assetPath}\">
+            <\/amp-img>
+          <\/body>
       <\/html>`;
+
     const videoHtml = file
       ? `
-        <body>
-          <amp-video layout=\"fill\" height=\"1920\" width=\"1080\" autoplay loop>
-            <source src=\".\/${assetPath}\" type=\"${file.type}\" \/>
-          <\/amp-video>
-        <\/body>
+        <\/head>
+          <body>
+            <amp-video layout=\"fill\" height=\"1920\" width=\"1080\" autoplay loop>
+              <source src=\".\/${assetPath}\" type=\"${file.type}\" \/>
+            <\/amp-video>
+          <\/body>
       <\/html>`
       : ``;
-    const assetHtml =
-      file && file.type.includes('video') ? videoHtml : imageHtml;
-    const adAmpHtml = adHtml + assetHtml;
+
+    const adAmpHtml = file?.type.includes('video')
+      ? adHtml + ampVideoRuntime + videoHtml
+      : adHtml + imageHtml;
 
     return adAmpHtml;
   }

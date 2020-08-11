@@ -9,7 +9,7 @@ export interface AdAuthoringWorkflowState {
   readonly callToAction?: CallToActionEnum;
   readonly fileSrc?: string;
   readonly file?: File;
-  readonly AmpHtml: string;
+  readonly ampHtml: string;
 }
 
 @Injectable({
@@ -168,7 +168,7 @@ export class AdAuthoringWorkflowStateContainer {
     landingType: LandingTypeEnum.AMP,
     callToAction: CallToActionEnum.APPLY_NOW,
     fileSrc: 'https://placekitten.com/300/250',
-    AmpHtml: this.generateAMPHTML(
+    ampHtml: this.generateAMPHTML(
       CallToActionEnum.APPLY_NOW,
       'https://www.amp.dev',
       LandingTypeEnum.AMP,
@@ -193,7 +193,7 @@ export class AdAuthoringWorkflowStateContainer {
       nextState.fileSrc,
       nextState.file
     );
-    nextState = {...nextState, AmpHtml};
+    nextState = {...nextState, ampHtml: AmpHtml};
     this.state$.next(nextState);
   }
 }

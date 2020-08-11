@@ -15,6 +15,6 @@ export class PreviewAreaComponent {
     // AmpHtml must be mapped into an array in order to use an aync pipe in the template
     this.ampHtmlObs = service
       .getAdAuthorings()
-      .pipe(map(state => [state.AmpHtml]));
+      .pipe(map(state => [state.ampHtml]));
   }
 }

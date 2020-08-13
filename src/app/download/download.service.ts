@@ -9,14 +9,10 @@ export class DownloadService {
     private readonly adAuthoringState: AdAuthoringWorkflowStateContainer
   ) {}
 
-  getDisabledVal() {
-    const file = this.adAuthoringState.getValue().file;
-    const landingUrl = this.adAuthoringState.getValue().landingUrl;
+  downlaodDisabled() {
+    const {file, landingUrl} = this.adAuthoringState.getValue();
 
-    if (file == null || landingUrl == '') {
-      return true;
-    }
-    return false;
+    return file == null || landingUrl == '' ? true : false;
   }
 
   getAsset() {

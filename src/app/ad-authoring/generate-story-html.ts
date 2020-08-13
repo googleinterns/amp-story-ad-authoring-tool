@@ -460,7 +460,7 @@ export function generateStoryAmpHtml(ampHtml: generateAmpHtmlParams) {
               <!-- PAGE BACKGROUND LAYER (wtwkmhvpbp) ENDS -->
               <amp-story-grid-layer template="vertical" id="xdsmo" >
                  <!-- image_1 STARTS HERE -->
-                 <div class='mzamz pa' id='pitfzlafay' ><amp-img width='1364' height='2046' layout='responsive' class=' img-fill  pa ' src='./assets/2.jpeg' alt='' ></amp-img></div>
+                 <div class='mzamz pa' id='pitfzlafay' ><amp-img width='1364' height='2046' layout='responsive' class=' img-fill  pa ' src='https://i.imgur.com/NKipN18.jpg' alt='' ></amp-img></div>
                  <!-- image_1 ENDS HERE -->
                  <!-- About Me: STARTS HERE -->
                  <h1 class='ellmt pa' id='hwgnlxykrl' >About Me:</h1>

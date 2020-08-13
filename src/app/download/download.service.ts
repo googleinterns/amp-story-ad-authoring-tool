@@ -13,7 +13,7 @@ export class DownloadService {
     const file = this.adAuthoringState.getValue().file;
     const landingUrl = this.adAuthoringState.getValue().landingUrl;
 
-    if (file == null || landingUrl == null) {
+    if (file == null || landingUrl == '') {
       return true;
     }
     return false;

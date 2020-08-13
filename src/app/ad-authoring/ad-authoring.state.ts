@@ -10,7 +10,7 @@ export interface AdAuthoringWorkflowState {
   readonly callToAction?: CallToActionEnum;
   readonly fileSrc?: string;
   readonly file?: File;
-  readonly ampHtml: string;
+  readonly ampHtml?: string;
 }
 
 @Injectable({

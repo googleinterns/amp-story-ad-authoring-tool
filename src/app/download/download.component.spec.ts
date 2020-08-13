@@ -5,14 +5,14 @@ import {MatButtonHarness} from '@angular/material/button/testing';
 import {HarnessLoader} from '@angular/cdk/testing';
 import {AppModule} from '../app.module';
 import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
-import {MatExpansionPanelHarness} from '@angular/material/expansion/testing';
-import {MatInputHarness} from '@angular/material/input/testing';
+import {AdAuthoringWorkflowStateContainer} from '../ad-authoring/ad-authoring.state';
 
 let loader: HarnessLoader;
 
 describe('DownloadComponent', () => {
   let component: DownloadComponent;
   let fixture: ComponentFixture<DownloadComponent>;
+  let state: AdAuthoringWorkflowStateContainer;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -23,13 +23,38 @@ describe('DownloadComponent', () => {
     loader = TestbedHarnessEnvironment.loader(fixture);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    state = TestBed.inject(AdAuthoringWorkflowStateContainer);
   });
 
   it('should create the download component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call downloadFile when the download button is clicked', async () => {
+  it('should expect download button to be disabled', async () => {
+    const button = await loader.getHarness(MatButtonHarness);
+    const isDisbaled = await button.isDisabled();
+
+    expect(isDisbaled).toBe(true);
+  });
+
+  it('should expect download button to be enabled after file and landingUrl updated in state', async () => {
+    const fakeFile = new File([''], 'filename', {type: 'image/png'});
+    state.setState({
+      landingUrl: 'https://google.com',
+      file: fakeFile,
+    });
+    const button = await loader.getHarness(MatButtonHarness);
+    const isDisbaled = await button.isDisabled();
+
+    expect(isDisbaled).toBe(false);
+  });
+
+  it('should call downloadFile when the download button is enabled and clicked', async () => {
+    const fakeFile = new File([''], 'filename', {type: 'image/png'});
+    state.setState({
+      landingUrl: 'https://google.com',
+      file: fakeFile,
+    });
     spyOn(component, 'downloadFileZip');
     const button = await loader.getHarness(MatButtonHarness);
 
@@ -37,25 +62,4 @@ describe('DownloadComponent', () => {
 
     expect(component.downloadFileZip).toHaveBeenCalled();
   });
-
-  // it('should contain a defined landingUrl element', async() => {
-  //   // expand the call to action expansion panel
-  //   const callToActionExpansion = await loader.getHarness(
-  //     MatExpansionPanelHarness.with({
-  //       selector: '#call-to-action-panel',
-  //     })
-  //   );
-  //   await callToActionExpansion.expand();
-  //   // set landingUrl value
-  //   const landingUrlInput = await loader.getHarness(MatInputHarness);
-  //   await landingUrlInput.setValue('https://google.com');
-  //   // expand the asset upload expansion panel
-  //   const assetUploadExpansion = await loader.getHarness(
-  //     MatExpansionPanelHarness.with({
-  //       selector: '#asset-upload-panel',
-  //     })
-  //   );
-  //   await assetUploadExpansion.expand();
-  //   // upload an image
-  // });
 });

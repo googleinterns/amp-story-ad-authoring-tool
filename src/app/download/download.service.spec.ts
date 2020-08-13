@@ -11,6 +11,11 @@ describe('DownloadService', () => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(DownloadService);
     state = TestBed.inject(AdAuthoringWorkflowStateContainer);
+    const fakeFile = new File([''], 'filename', {type: 'image/png'});
+    state.setState({
+      landingUrl: 'https://google.com',
+      file: fakeFile,
+    });
   });
 
   it('should be created', () => {
@@ -47,9 +52,15 @@ describe('DownloadService', () => {
     expect(adHtml).toContain(state.getValue().file.name);
   });
 
-  it('should get null asset file initially', () => {
+  it('should get asset file', () => {
     const assetFile = service.getAsset();
 
-    expect(assetFile).toBe(null);
+    expect(assetFile).toBe(state.getValue().file);
+  });
+
+  it('should expect downloadDisabled to return false', () => {
+    const downloadDisabledVal = service.downloadDisabled();
+
+    expect(downloadDisabledVal).toBe(false);
   });
 });

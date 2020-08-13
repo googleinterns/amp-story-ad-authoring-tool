@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable, BehaviorSubject} from 'rxjs';
 import {CallToActionEnum} from './call-to-action';
 import {LandingTypeEnum} from './landing-type-values';
-import {generateStoryAmpHtml} from './generate-amp-html';
+import {generateStoryAmpHtml} from './generate-story-html';
 
 export interface AdAuthoringWorkflowState {
   readonly landingUrl?: string;

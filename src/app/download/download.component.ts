@@ -20,7 +20,7 @@ export class DownloadComponent {
   ) {
     this.adAuthoringObs = adAuthoringService.getAdAuthorings();
     this.adAuthoringObs.subscribe(
-      () => (this.disabledVal = downloadService.downlaodDisabled())
+      () => (this.disabledVal = downloadService.downloadDisabled())
     );
   }
 

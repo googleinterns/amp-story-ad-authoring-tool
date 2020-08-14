@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AdAuthoringWorkflowStateContainer} from '../ad-authoring/ad-authoring.state';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -9,10 +10,13 @@ export class DownloadService {
     private readonly adAuthoringState: AdAuthoringWorkflowStateContainer
   ) {}
 
-  downlaodDisabled() {
-    const {file, landingUrl} = this.adAuthoringState.getValue();
-
-    return file == null || landingUrl == '' ? true : false;
+  downloadDisabled() {
+    return this.adAuthoringState.getState().pipe(
+      map(state => {
+        const {file, landingUrl} = state;
+        return file && landingUrl ? false : true;
+      })
+    );
   }
 
   getAsset() {

@@ -8,7 +8,7 @@ export function generateStoryAmpHtml(ampHtml: generateAmpHtmlParams) {
     assetSrc: ampHtml.assetSrc,
     assetFile: ampHtml.assetFile,
   });
-  const storyAmpHtml = `<!doctype html>
+  return `<!doctype html>
      <html amp lang="en">
      <head>
         <meta charset="utf-8">
@@ -580,5 +580,4 @@ export function generateStoryAmpHtml(ampHtml: generateAmpHtmlParams) {
         </amp-story>
      </body>
      </html>`;
-  return storyAmpHtml;
 }

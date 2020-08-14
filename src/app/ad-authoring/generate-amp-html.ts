@@ -34,57 +34,6 @@ export function generateAdAmpHtml(
   return adAMPHTML;
 }
 
-// TODO:
-// figure out why my generateEscapedAdAmpHtml function (commented out below) doesn't work
-// create an interface for the generateAmpHtml parameters, make both base64AssetStr and assetFilePath optional
-
-// export function generateAdAmpHtml(
-//   callToActionStr: string,
-//   landingPageUrl: string,
-//   landingPageType: string,
-//   base64AssetStr: string,
-//   assetFile: File
-// ) {
-//   let adAMPHTML =
-//     '<!doctype html><html amp4ads><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,minimum-scale=1"><meta name="amp-cta-type" content="' +
-//     callToActionStr +
-//     '"><meta name="amp-cta-url" content="' +
-//     landingPageUrl +
-//     '"><meta name="amp-cta-landing-page-type" content="' +
-//     landingPageType +
-//     '"><style amp4ads-boilerplate>body{visibility:hidden}<\/style><script async src=\"https:\/\/cdn.ampproject.org\/amp4ads-v0.js\"><\/script><\/head><body><amp-img layout=\"fixed\" height=\"250\" width=\"300\" src=\"' +
-//     base64AssetStr +
-//     '\"><\/amp-img><\/body><\/html>';
-
-//   // if the file uploaded is a video (not image)
-//   if (assetFile != null && assetFile.type.includes('video')) {
-//     adAMPHTML =
-//       '<!doctype html><html amp4ads><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,minimum-scale=1\"><meta name=\"amp-cta-type\" content=\"' +
-//       callToActionStr +
-//       '\"><meta name=\"amp-cta-url\" content=\"' +
-//       landingPageUrl +
-//       '\"><meta name=\"amp-cta-landing-page-type\" content=\"' +
-//       landingPageType +
-//       '\"><style amp4ads-boilerplate>body{visibility:hidden}<\/style><script async src=\"https:\/\/cdn.ampproject.org\/amp4ads-v0.js\"><\/script><script async custom-element=\"amp-video\" src=\"https:\/\/cdn.ampproject.org\/v0\/amp-video-0.1.js\"><\/script><\/head><body><amp-video layout=\"fill\" height=\"1920\" width=\"1080\" autoplay loop> <source src=\"' +
-//       base64AssetStr +
-//       '\" type=\"' +
-//       assetFile.type +
-//       '\" \/><\/amp-video><\/body><\/html>';
-//   }
-//   return adAMPHTML;
-// }
-
-// export function generateEscapedAdAmpHtml(
-//   callToActionStr: string,
-//   landingPageUrl: string,
-//   landingPageType: string,
-//   base64AssetStr: string,
-//   assetFile: File
-// ) {
-//   console.log(JSON.stringify(generateAdAmpHtml(callToActionStr, landingPageUrl, landingPageType, base64AssetStr, assetFile)));
-//   return JSON.stringify(generateAdAmpHtml(callToActionStr, landingPageUrl, landingPageType, base64AssetStr, assetFile));
-// }
-
 export function generateStoryAmpHtml(adAMPHTML: string) {
   const storyAMPHTML =
     `<!DOCTYPE html>

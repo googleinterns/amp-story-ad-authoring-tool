@@ -13,7 +13,7 @@ export class AssetUploadComponent {
 
   onFileInput(fileInput: any) {
     this.file = fileInput.target.files[0];
-    const imageSrc = URL.createObjectURL(this.file);
-    this.service.updateAssets(imageSrc, this.file);
+    const assetSrc = URL.createObjectURL(this.file);
+    this.service.updateAssets(assetSrc, this.file);
   }
 }

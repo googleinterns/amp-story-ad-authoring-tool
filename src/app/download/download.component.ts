@@ -1,9 +1,7 @@
 import {Component} from '@angular/core';
 import {DownloadService} from './download.service';
 import * as JSZip from 'jszip';
-import {AdAuthoringService} from '../ad-authoring/ad-authoring.service';
 import {Observable} from 'rxjs';
-import {AdAuthoringWorkflowState} from '../ad-authoring/ad-authoring.state';
 
 @Component({
   selector: 'app-download',
@@ -11,17 +9,10 @@ import {AdAuthoringWorkflowState} from '../ad-authoring/ad-authoring.state';
   styleUrls: ['./download.component.scss'],
 })
 export class DownloadComponent {
-  disabledVal = false;
-  adAuthoringObs: Observable<AdAuthoringWorkflowState>;
+  disabledObs: Observable<boolean>;
 
-  constructor(
-    private downloadService: DownloadService,
-    private adAuthoringService: AdAuthoringService
-  ) {
-    this.adAuthoringObs = adAuthoringService.getAdAuthorings();
-    this.adAuthoringObs.subscribe(
-      () => (this.disabledVal = downloadService.downlaodDisabled())
-    );
+  constructor(private downloadService: DownloadService) {
+    this.disabledObs = downloadService.downloadDisabled();
   }
 
   downloadFileZip() {

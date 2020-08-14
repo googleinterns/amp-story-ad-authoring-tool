@@ -1,7 +1,7 @@
 <div class="toolbar">
     <button mat-raised-button color="primary" 
             (click)="downloadFileZip()"
-            [disabled]="disabledVal">
+            [disabled]="disabledObs | async">
         <span>DOWNLOAD AMPHTML</span>
     </button>
 </div>

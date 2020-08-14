@@ -20,13 +20,13 @@ export class AdAuthoringWorkflowStateContainer {
   private state$: BehaviorSubject<
     AdAuthoringWorkflowState
   > = new BehaviorSubject({
-    landingUrl: 'https://www.amp.dev',
+    landingUrl: '',
     landingType: LandingTypeEnum.AMP,
     callToAction: CallToActionEnum.APPLY_NOW,
     fileSrc: 'https://placekitten.com/300/250',
     ampHtml: generateStoryAmpHtml({
       callToActionStr: CallToActionEnum.APPLY_NOW,
-      landingUrl: 'https://www.amp.dev',
+      landingUrl: '',
       landingType: LandingTypeEnum.AMP,
       assetSrc: 'https://placekitten.com/300/250',
       assetFile: null,

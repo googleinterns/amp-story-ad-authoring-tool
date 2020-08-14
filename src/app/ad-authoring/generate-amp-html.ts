@@ -4,7 +4,8 @@ export interface generateAmpHtmlParams {
   readonly callToActionStr: string;
   readonly landingUrl: string;
   readonly landingType: string;
-  readonly assetSrc: string;
+  readonly assetSrc?: string;
+  readonly assetFilePath?: string;
   readonly assetFile: File;
 }
 

@@ -18,6 +18,6 @@ export class PreviewAreaComponent {
     // to update the ad accordingly.
     this.ampHtmlObs = service
       .getAdAuthorings()
-      .pipe(map(state => [state.AmpHtml]));
+      .pipe(map(state => [state.ampHtml]));
   }
 }

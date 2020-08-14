@@ -18,7 +18,13 @@ describe('PreviewComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create preview component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should contain an iframe', () => {
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('iframe')).toBeTruthy();
   });
 });

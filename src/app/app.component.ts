@@ -16,7 +16,6 @@
  */
 
 import {Component} from '@angular/core';
-import {AdAuthoringService} from './ad-authoring/ad-authoring.service';
 
 @Component({
   selector: 'app-root',

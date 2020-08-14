@@ -1,9 +1,0 @@
-<div *ngIf="(adAuthoringObs | async) as adAuthoring">
-    Landing Page URL: {{adAuthoring.landingUrl}} <br>
-    Landing Page Type: {{adAuthoring.landingType}} <br>
-    Call to Action Text: {{adAuthoring.callToAction}} <br>
-    <div *ngIf="adAuthoring.file">
-        <img [src]="adAuthoring.fileSrc" alt="image">
-        <video [src]="adAuthoring.fileSrc" controls></video>
-    </div>
-</div>

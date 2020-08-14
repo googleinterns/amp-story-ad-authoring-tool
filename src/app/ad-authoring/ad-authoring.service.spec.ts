@@ -25,10 +25,16 @@ describe('AdAuthoringService', () => {
     expect(thisState).toEqual(state.getState());
   });
 
-  it('should update the landing page url state', () => {
+  it('should update the landing page url', () => {
     service.updateLandingUrl('google.com');
 
     expect(state.getValue().landingUrl).toBe('google.com');
+  });
+
+  it('AMPHTML should contain the updated landingUrl value', () => {
+    service.updateLandingUrl('google.com');
+
+    expect(state.getValue().AmpHtml).toContain(state.getValue().landingUrl);
   });
 
   it('should update the landing page type state', () => {
@@ -37,9 +43,21 @@ describe('AdAuthoringService', () => {
     expect(state.getValue().landingType).toBe('AMP');
   });
 
+  it('AMPHTML should contain the updated landingType value', () => {
+    service.updateLandingType(LandingTypeEnum.AMP);
+
+    expect(state.getValue().AmpHtml).toContain(state.getValue().landingType);
+  });
+
   it('should update the call to action state', () => {
     service.updateCallToAction(CallToActionEnum.ORDER_NOW);
 
     expect(state.getValue().callToAction).toBe('ORDER_NOW');
+  });
+
+  it('AMPHTML should contain the updated callToAction value', () => {
+    service.updateCallToAction(CallToActionEnum.ORDER_NOW);
+
+    expect(state.getValue().AmpHtml).toContain(state.getValue().callToAction);
   });
 });

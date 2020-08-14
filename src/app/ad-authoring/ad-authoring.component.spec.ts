@@ -103,7 +103,7 @@ describe('AdAuthoringComponent', () => {
 
     const placeholder = await landingUrlInput.getPlaceholder();
 
-    expect(placeholder).toBe('Landing Page URL');
+    expect(placeholder).toBe('https://example.com');
   });
 
   it('should set value correctly for landing page url input', async () => {

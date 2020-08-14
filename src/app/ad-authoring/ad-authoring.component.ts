@@ -10,6 +10,9 @@ import {
   LANDING_TYPE_DISPLAY_VALUES,
   sortedLandingType,
 } from './landing-type-values';
+import {FormControl, Validators} from '@angular/forms';
+
+const validUrlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
 
 @Component({
   selector: 'app-ad-authoring',
@@ -17,13 +20,24 @@ import {
   styleUrls: ['./ad-authoring.component.scss'],
 })
 export class AdAuthoringComponent {
-  landingPageUrl = '';
+  landingUrl = '';
 
   CallToActionMapping = CALL_TO_ACTION_DISPLAY_VALUES;
   callToActionValues = sortedCallToAction;
 
   LandingTypeMapping = LANDING_TYPE_DISPLAY_VALUES;
   landingTypeValues = sortedLandingType;
+
+  urlControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern(validUrlRegex),
+  ]);
+
+  getErrorMessage() {
+    return this.urlControl.hasError('required')
+      ? 'You must enter a value'
+      : 'Invalid URL';
+  }
 
   constructor(private service: AdAuthoringService) {}
 

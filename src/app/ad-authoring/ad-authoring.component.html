@@ -3,17 +3,22 @@
     <mat-expansion-panel>
         <mat-expansion-panel-header>
             <mat-panel-title>
-                Text
+                Call To Action
             </mat-panel-title>
         </mat-expansion-panel-header>
 
         <mat-form-field>
             <mat-label>Landing Page URL</mat-label>
             <input matInput 
-                type="text" 
-                placeholder="Landing Page URL" 
-                [ngModel] = "landingUrl"
-                (ngModelChange)="updateLandingUrl($event)"/>
+                   type="text" 
+                   placeholder="https://example.com" 
+                   [ngModel] = "landingUrl"
+                   (ngModelChange)="updateLandingUrl($event)"
+                   [formControl]="urlControl"
+                   required/>
+            <mat-error *ngIf="urlControl.invalid">
+                {{getErrorMessage()}}
+            </mat-error>
         </mat-form-field>
     
         <br>
@@ -24,7 +29,7 @@
                 class="landing-page"
                 (selectionChange)="updateLandingType($event.value)">
                 <mat-option *ngFor="let landingTypeValue of landingTypeValues" 
-                    [value]="LandingTypeMapping[landingTypeValue]">
+                            [value]="LandingTypeMapping[landingTypeValue]">
                     {{LandingTypeMapping[landingTypeValue]}}
                 </mat-option>
             </mat-select>
@@ -38,7 +43,7 @@
                 class="call-to-action"
                 (selectionChange)="updateCallToAction($event.value)">
                 <mat-option *ngFor="let callToActionValue of callToActionValues" 
-                    [value]="callToActionValue">
+                            [value]="CallToActionMapping[callToActionValue]">
                     {{CallToActionMapping[callToActionValue]}}
                 </mat-option>
             </mat-select>
@@ -51,5 +56,5 @@
 
 <div class="toolbar">
     <!-- TODO: Create new component for this button -->
-    <button mat-raised-button color="primary">Generate AMPHTML</button>
+    <button mat-raised-button color="primary">DOWNLOAD ZIP</button>
 </div>

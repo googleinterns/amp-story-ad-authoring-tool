@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {DownloadService} from './download.service';
+import * as JSZip from 'jszip';
 
 @Component({
   selector: 'app-download',
@@ -6,18 +8,30 @@ import {Component} from '@angular/core';
   styleUrls: ['./download.component.scss'],
 })
 export class DownloadComponent {
-  downloadFile() {
-    // TODO: create a service that generates the AMP ad html instead of this dummy data
-    const data = 'amp story ad html goes here';
-    const blob = new Blob([data], {type: 'application/octet-stream'});
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.style.display = 'none';
-    a.href = url;
-    a.download = 'file.txt';
-    a.click();
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
+  constructor(private downloadService: DownloadService) {}
+
+  downloadFileZip() {
+    const zip = new JSZip();
+    const data = this.downloadService.generateHtmlForDownload();
+    zip.file('index.html', data);
+
+    const asset = this.downloadService.getAsset();
+    const assetBase64 = asset.base64;
+    // strip off everything befor the first comma (data:image/png;base64,) to get raw base64 encoding
+    const assetBase64Stripped = assetBase64.replace(/^[^,]+, */, '');
+    const assetFileName = asset.fileName;
+    zip.file(assetFileName, assetBase64Stripped, {base64: true});
+
+    zip.generateAsync({type: 'blob'}).then(function (content) {
+      const objectUrl: string = URL.createObjectURL(content);
+      const downloadLink = document.createElement('a');
+      document.body.appendChild(downloadLink);
+      downloadLink.style.display = 'none';
+      downloadLink.href = objectUrl;
+      downloadLink.download = 'AmpAd.zip';
+      downloadLink.click();
+      window.URL.revokeObjectURL(objectUrl);
+      document.body.removeChild(downloadLink);
+    });
   }
 }

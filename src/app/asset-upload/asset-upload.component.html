@@ -10,7 +10,7 @@
                     color="primary" 
                     type="button" 
                     (click)="fileInput.click()">
-            <span>Upload</span>
+            <span>Upload File</span>
             <input #fileInput 
                    type="file" 
                    (change)="onFileInput($event)" 
@@ -23,9 +23,11 @@
         OR
         <br>
         <mat-form-field class="example-full-width">
-            <mat-label>Upload Image from Link</mat-label>
+            <mat-label>Upload Asset from Link</mat-label>
             <input matInput 
-                   placeholder="Sample image link here"/>
+                   placeholder="Sample asset link here"
+                   [ngModel] = "assetLink"
+                   (blur)="assetLinkUpload($event.target.value)"/>
         </mat-form-field>
     </mat-expansion-panel>
 </div>

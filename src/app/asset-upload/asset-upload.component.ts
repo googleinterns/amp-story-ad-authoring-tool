@@ -8,8 +8,13 @@ import {AssetUploadService} from './asset-upload.service';
 })
 export class AssetUploadComponent {
   file: File | null = null;
+  assetLink = '';
 
   constructor(private service: AssetUploadService) {}
+
+  assetLinkUpload(assetLink: string) {
+    this.service.updateAssets(assetLink, null);
+  }
 
   onFileInput(fileInput: any) {
     this.file = fileInput.target.files[0];

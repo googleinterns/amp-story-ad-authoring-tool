@@ -13,7 +13,14 @@ export class AssetUploadComponent {
   constructor(private service: AssetUploadService) {}
 
   assetLinkUpload(assetLink: string) {
-    this.service.updateAssets(assetLink, null);
+    // Fetch the asset and parse the response stream as a blob
+    const assetBlob = fetch(assetLink)
+      .then(response => response.blob())
+      .then(blob => {
+        const filename = assetLink.substring(assetLink.lastIndexOf('/'));
+        const assetFile = new File([blob], filename);
+        this.service.updateAssets(assetLink, assetFile);
+      });
   }
 
   onFileInput(fileInput: any) {

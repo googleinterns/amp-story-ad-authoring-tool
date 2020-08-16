@@ -9,6 +9,7 @@ import {AssetUploadService} from './asset-upload.service';
 export class AssetUploadComponent {
   file: File | null = null;
   assetLink = '';
+  isSizeInvalid = false;
 
   constructor(private service: AssetUploadService) {}
 
@@ -19,6 +20,10 @@ export class AssetUploadComponent {
       .then(blob => {
         const filename = assetLink.substring(assetLink.lastIndexOf('/'));
         const assetFile = new File([blob], filename);
+        this.isSizeInvalid =
+          assetFile.type.includes('video') && assetFile.size > 4000000
+            ? true
+            : false;
         this.service.updateAssets(assetLink, assetFile);
       });
   }
@@ -26,6 +31,10 @@ export class AssetUploadComponent {
   onFileInput(fileInput: any) {
     this.file = fileInput.target.files[0];
     const assetSrc = URL.createObjectURL(this.file);
+    this.isSizeInvalid =
+      this.file.type.includes('video') && this.file.size > 4000000
+        ? true
+        : false;
     this.service.updateAssets(assetSrc, this.file);
   }
 }

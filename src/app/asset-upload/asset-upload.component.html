@@ -29,5 +29,8 @@
                    [ngModel] = "assetLink"
                    (blur)="assetLinkUpload($event.target.value)"/>
         </mat-form-field>
+        <mat-error *ngIf="isSizeInvalid">
+            Video is larger than the recommended size of 4 MB
+        </mat-error>
     </mat-expansion-panel>
 </div>

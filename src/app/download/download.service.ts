@@ -31,14 +31,12 @@ export class DownloadService {
     const file = this.adAuthoringState.getValue().file;
     const assetPath = file.name;
 
-    const adAmpHtml = generateHtmlForDownload({
+    return generateHtmlForDownload({
       callToActionStr: callToAction,
       landingUrl: landingUrl,
       landingType: landingType,
       assetFilePath: assetPath,
       assetFile: file,
     });
-
-    return adAmpHtml;
   }
 }

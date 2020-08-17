@@ -12,7 +12,7 @@ export class DownloadComponent {
   disabledObs: Observable<boolean>;
 
   constructor(private downloadService: DownloadService) {
-    this.disabledObs = downloadService.downloadDisabled();
+    this.disabledObs = downloadService.isdownloadDisabled();
   }
 
   downloadFileZip() {

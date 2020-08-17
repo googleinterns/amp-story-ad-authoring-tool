@@ -11,11 +11,11 @@ export class DownloadService {
     private readonly adAuthoringState: AdAuthoringWorkflowStateContainer
   ) {}
 
-  downloadDisabled() {
+  isdownloadDisabled() {
     return this.adAuthoringState.getState().pipe(
       map(state => {
         const {file, landingUrl} = state;
-        return file && landingUrl ? false : true;
+        return !(file && landingUrl);
       })
     );
   }

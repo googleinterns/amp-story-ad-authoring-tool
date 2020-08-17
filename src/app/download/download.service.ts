@@ -11,7 +11,7 @@ export class DownloadService {
     private readonly adAuthoringState: AdAuthoringWorkflowStateContainer
   ) {}
 
-  isdownloadDisabled() {
+  isDownloadDisabled() {
     return this.adAuthoringState.getState().pipe(
       map(state => {
         const {file, landingUrl} = state;

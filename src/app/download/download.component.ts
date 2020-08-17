@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {DownloadService} from './download.service';
 import * as JSZip from 'jszip';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-download',
@@ -8,7 +9,11 @@ import * as JSZip from 'jszip';
   styleUrls: ['./download.component.scss'],
 })
 export class DownloadComponent {
-  constructor(private downloadService: DownloadService) {}
+  disabledObs: Observable<boolean>;
+
+  constructor(private downloadService: DownloadService) {
+    this.disabledObs = downloadService.isdownloadDisabled();
+  }
 
   downloadFileZip() {
     const zip = new JSZip();

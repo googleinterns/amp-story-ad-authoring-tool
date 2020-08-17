@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AdAuthoringWorkflowStateContainer} from '../ad-authoring/ad-authoring.state';
+import {map} from 'rxjs/operators';
 import {generateHtmlForDownload} from '../ad-authoring/generate-amp-html';
 
 @Injectable({
@@ -9,6 +10,15 @@ export class DownloadService {
   constructor(
     private readonly adAuthoringState: AdAuthoringWorkflowStateContainer
   ) {}
+
+  isdownloadDisabled() {
+    return this.adAuthoringState.getState().pipe(
+      map(state => {
+        const {file, landingUrl} = state;
+        return !(file && landingUrl);
+      })
+    );
+  }
 
   getAsset() {
     return this.adAuthoringState.getValue().file;

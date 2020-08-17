@@ -1,5 +1,7 @@
 <div class="toolbar">
-    <button mat-raised-button color="primary" (click)="downloadFile()">
+    <button mat-raised-button color="primary" 
+            (click)="downloadFileZip()"
+            [disabled]="disabledObs | async">
         <span>DOWNLOAD ZIP</span>
     </button>
 </div>

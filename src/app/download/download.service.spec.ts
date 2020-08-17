@@ -59,7 +59,7 @@ describe('DownloadService', () => {
   });
 
   it('should expect downloadDisabled to return false', () => {
-    const downloadDisabledVal = service.downloadDisabled();
+    const downloadDisabledVal = service.isDownloadDisabled();
 
     expect(downloadDisabledVal).toBe(false);
   });

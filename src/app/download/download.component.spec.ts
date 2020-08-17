@@ -30,8 +30,17 @@ describe('DownloadComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should expect download button to be disabled', async () => {
+  it('should expect download button to be disabled when both file and landingUrl are not initialized', async () => {
     const button = await loader.getHarness(MatButtonHarness);
+    const isDisbaled = await button.isDisabled();
+
+    expect(isDisbaled).toBe(true);
+  });
+
+  it('should expect download button to be disabled when landingUrl has a value but file is null', async () => {
+    const button = await loader.getHarness(MatButtonHarness);
+
+    state.setState({landingUrl: 'https://google.com'});
     const isDisbaled = await button.isDisabled();
 
     expect(isDisbaled).toBe(true);

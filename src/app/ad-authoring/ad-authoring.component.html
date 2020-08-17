@@ -13,7 +13,7 @@
                    type="text" 
                    placeholder="https://example.com" 
                    [ngModel] = "landingUrl"
-                   (ngModelChange)="updateLandingUrl($event)"
+                   (blur)="updateLandingUrl($event.target.value)"
                    [formControl]="urlControl"
                    required/>
             <mat-error *ngIf="urlControl.invalid">

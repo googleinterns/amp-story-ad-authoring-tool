@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable, BehaviorSubject} from 'rxjs';
 import {CallToActionEnum} from './call-to-action';
 import {LandingTypeEnum} from './landing-type-values';
-import {generateStoryAmpHtml} from './generate-amp-html';
+import {generateStoryAmpHtml} from './generate-story-html';
 
 export interface AdAuthoringWorkflowState {
   readonly landingUrl?: string;
@@ -20,13 +20,13 @@ export class AdAuthoringWorkflowStateContainer {
   private state$: BehaviorSubject<
     AdAuthoringWorkflowState
   > = new BehaviorSubject({
-    landingUrl: 'https://www.amp.dev',
+    landingUrl: '',
     landingType: LandingTypeEnum.AMP,
     callToAction: CallToActionEnum.APPLY_NOW,
     fileSrc: 'https://placekitten.com/300/250',
     ampHtml: generateStoryAmpHtml({
       callToActionStr: CallToActionEnum.APPLY_NOW,
-      landingUrl: 'https://www.amp.dev',
+      landingUrl: '',
       landingType: LandingTypeEnum.AMP,
       assetSrc: 'https://placekitten.com/300/250',
       assetFile: null,

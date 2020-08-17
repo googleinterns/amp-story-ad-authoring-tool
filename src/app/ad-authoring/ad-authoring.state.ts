@@ -28,7 +28,7 @@ export class AdAuthoringWorkflowStateContainer {
       callToActionStr: CallToActionEnum.APPLY_NOW,
       landingUrl: 'https://www.amp.dev',
       landingType: LandingTypeEnum.AMP,
-      base64AssetStr: 'https://placekitten.com/300/250',
+      assetSrc: 'https://placekitten.com/300/250',
       assetFile: null,
     }),
   });
@@ -46,7 +46,7 @@ export class AdAuthoringWorkflowStateContainer {
       callToActionStr: nextState.callToAction,
       landingUrl: nextState.landingUrl,
       landingType: nextState.landingType,
-      base64AssetStr: nextState.fileSrc,
+      assetSrc: nextState.fileSrc,
       assetFile: nextState.file,
     });
     nextState = {...nextState, ampHtml: AmpHtml};

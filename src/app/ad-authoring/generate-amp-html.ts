@@ -4,7 +4,7 @@ export interface generateAmpHtmlParams {
   readonly callToActionStr: string;
   readonly landingUrl: string;
   readonly landingType: string;
-  readonly base64AssetStr?: string;
+  readonly assetSrc?: string;
   readonly assetFilePath?: string;
   readonly assetFile: File;
 }
@@ -24,12 +24,12 @@ export function generateAdAmpHtml(ampHtml: generateAmpHtmlParams) {
 
   const imageHtml =
     '<\\/head><body><amp-img layout=\\"fixed\\" height=\\"250\\" width=\\"300\\" src=\\"' +
-    ampHtml.base64AssetStr +
+    ampHtml.assetSrc +
     '\\"><\\/amp-img><\\/body><\\/html>"';
 
   const videoHtml = ampHtml.assetFile
     ? '<\\/head><body><amp-video layout=\\"fill\\" height=\\"1920\\" width=\\"1080\\" autoplay loop> <source src=\\"' +
-      ampHtml.base64AssetStr +
+      ampHtml.assetSrc +
       '\\" type=\\"' +
       ampHtml.assetFile.type +
       '\\" \\/><\\/amp-video><\\/body><\\/html>"'
@@ -91,11 +91,10 @@ export function generateStoryAmpHtml(ampHtml: generateAmpHtmlParams) {
     callToActionStr: ampHtml.callToActionStr,
     landingUrl: ampHtml.landingUrl,
     landingType: ampHtml.landingType,
-    base64AssetStr: ampHtml.base64AssetStr,
+    assetSrc: ampHtml.assetSrc,
     assetFile: ampHtml.assetFile,
   });
-  const storyAMPHTML =
-    `<!DOCTYPE html>
+  const storyAmpHtml = `<!DOCTYPE html>
     <html amp="🤠-invalid" lang="en">
       <head>
         <meta charset="utf-8" />
@@ -114,9 +113,7 @@ export function generateStoryAmpHtml(ampHtml: generateAmpHtmlParams) {
               {
                 "ad-attributes": {
                   "type": "fake",
-                  "srcdoc": ` +
-    adAmpHtml +
-    `,
+                  "srcdoc": ${adAmpHtml},
                   "a4a-conversion": true
                 }
               }
@@ -206,5 +203,5 @@ export function generateStoryAmpHtml(ampHtml: generateAmpHtmlParams) {
         </amp-story>
       </body>
     </html>`;
-  return storyAMPHTML;
+  return storyAmpHtml;
 }

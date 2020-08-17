@@ -16,11 +16,8 @@ export class DownloadComponent {
     zip.file('index.html', data);
 
     const asset = this.downloadService.getAsset();
-    const assetBase64 = asset.base64;
-    // strip off everything befor the first comma (data:image/png;base64,) to get raw base64 encoding
-    const assetBase64Stripped = assetBase64.replace(/^[^,]+, */, '');
-    const assetFileName = asset.fileName;
-    zip.file(assetFileName, assetBase64Stripped, {base64: true});
+    const assetFileName = asset.name;
+    zip.file(assetFileName, asset);
 
     zip.generateAsync({type: 'blob'}).then(function (content) {
       const objectUrl: string = URL.createObjectURL(content);

@@ -42,7 +42,9 @@ export class AdAuthoringComponent {
   constructor(private service: AdAuthoringService) {}
 
   updateLandingUrl(landingUrl: string) {
-    this.service.updateLandingUrl(landingUrl);
+    if (!this.urlControl.invalid) {
+      this.service.updateLandingUrl(landingUrl);
+    }
   }
 
   updateLandingType(landingType: LandingTypeEnum) {

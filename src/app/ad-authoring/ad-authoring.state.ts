@@ -21,13 +21,13 @@ export class AdAuthoringWorkflowStateContainer {
     AdAuthoringWorkflowState
   > = new BehaviorSubject({
     landingUrl: '',
-    landingType: LandingTypeEnum.AMP,
-    callToAction: CallToActionEnum.APPLY_NOW,
+    landingType: LandingTypeEnum.NONAMP,
+    callToAction: CallToActionEnum.EXPLORE,
     fileSrc: 'https://placekitten.com/300/250',
     ampHtml: generateStoryAmpHtml({
-      callToActionStr: CallToActionEnum.APPLY_NOW,
+      callToActionStr: CallToActionEnum.EXPLORE,
       landingUrl: '',
-      landingType: LandingTypeEnum.AMP,
+      landingType: LandingTypeEnum.NONAMP,
       assetSrc: 'https://placekitten.com/300/250',
       assetFile: null,
     }),

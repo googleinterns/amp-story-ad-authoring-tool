@@ -34,19 +34,13 @@ describe('DownloadService', () => {
     expect(adHtml).toContain(state.getValue().landingType);
   });
 
-  it('generateHtmlForDownload should contain landingUrl value saved in state', () => {
-    const adHtml = service.generateHtmlForDownload();
-
-    expect(adHtml).toContain(state.getValue().landingUrl);
-  });
-
   it('generateHtmlForDownload should contain callToAction value saved in state', () => {
     const adHtml = service.generateHtmlForDownload();
 
     expect(adHtml).toContain(state.getValue().callToAction);
   });
 
-  it('generateHtmlForDownload should contain landingUrl value saved in state', () => {
+  it('generateHtmlForDownload should contain file name saved in state', () => {
     const adHtml = service.generateHtmlForDownload();
 
     expect(adHtml).toContain(state.getValue().file.name);

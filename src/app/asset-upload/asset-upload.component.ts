@@ -24,9 +24,9 @@ export class AssetUploadComponent {
           assetFile.type.includes('video') && assetFile.size > 4000000
             ? true
             : false;
-        if (!this.isSizeInvalid) {
-          this.service.updateAssets(assetLink, assetFile);
-        }
+        !this.isSizeInvalid
+          ? this.service.updateAssets(assetLink, assetFile)
+          : this.service.updateAssets('', null);
       });
   }
 
@@ -37,8 +37,8 @@ export class AssetUploadComponent {
       this.file.type.includes('video') && this.file.size > 4000000
         ? true
         : false;
-    if (!this.isSizeInvalid) {
-      this.service.updateAssets(assetSrc, this.file);
-    }
+    !this.isSizeInvalid
+      ? this.service.updateAssets(assetSrc, this.file)
+      : this.service.updateAssets('', null);
   }
 }

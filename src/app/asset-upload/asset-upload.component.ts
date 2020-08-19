@@ -7,7 +7,6 @@ import {AssetUploadService} from './asset-upload.service';
   styleUrls: ['./asset-upload.component.scss'],
 })
 export class AssetUploadComponent {
-  file: File | null = null;
   assetLink = '';
   isSizeValid = true;
   fileName = null;
@@ -16,33 +15,38 @@ export class AssetUploadComponent {
 
   assetLinkUpload(assetLink: string) {
     // Fetch the asset and parse the response stream as a blob
-    const assetBlob = fetch(assetLink)
+    fetch(assetLink)
       .then(response => response.blob())
       .then(blob => {
         const filename = assetLink.substring(assetLink.lastIndexOf('/'));
-        const assetFile = new File([blob], filename);
-        this.validateSize();
-        this.isSizeValid
-          ? this.service.updateAssets(assetLink, assetFile)
-          : this.service.updateAssets('', null);
+        const file = new File([blob], filename);
+        this.updateAssets(assetLink, file);
         this.fileName = '';
       });
   }
 
   onFileInput(fileInput: any) {
-    this.file = fileInput.target.files[0];
-    const assetSrc = URL.createObjectURL(this.file);
-    this.validateSize();
-    this.isSizeValid
-      ? this.service.updateAssets(assetSrc, this.file)
-      : this.service.updateAssets('', null);
-    this.fileName = this.file.name;
+    console.log(fileInput);
+    const file = fileInput.target.files[0];
+    const assetSrc = URL.createObjectURL(file);
+    this.updateAssets(assetSrc, file);
+    this.fileName = file.name;
     this.assetLink = '';
+
+    // addresses the case where user uploads the same file in succession
+    fileInput.target.value = '';
   }
 
-  validateSize() {
-    this.isSizeValid = !(
-      this.file.type.includes('video') && this.file.size > 4000000
-    );
+  private updateAssets(src: string, file: File) {
+    this.validateSize(file);
+    if (this.isSizeValid) {
+      this.service.updateAssets(src, file);
+    } else {
+      this.service.updateAssets('', null);
+    }
+  }
+
+  private validateSize(file: File) {
+    this.isSizeValid = !(file.type.includes('video') && file.size > 4000000);
   }
 }

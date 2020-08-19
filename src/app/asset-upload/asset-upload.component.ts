@@ -9,7 +9,8 @@ import {AssetUploadService} from './asset-upload.service';
 export class AssetUploadComponent {
   file: File | null = null;
   assetLink = '';
-  isSizeInvalid = false;
+  isSizeValid = true;
+  fileName = null;
 
   constructor(private service: AssetUploadService) {}
 
@@ -20,27 +21,28 @@ export class AssetUploadComponent {
       .then(blob => {
         const filename = assetLink.substring(assetLink.lastIndexOf('/'));
         const assetFile = new File([blob], filename);
-        this.isSizeInvalid =
-          assetFile.type.includes('video') && assetFile.size > 4000000
-            ? true
-            : false;
-        !this.isSizeInvalid
+        this.validateSize();
+        this.isSizeValid
           ? this.service.updateAssets(assetLink, assetFile)
           : this.service.updateAssets('', null);
-        document.getElementById('filename').innerHTML = '';
+        this.fileName = '';
       });
   }
 
   onFileInput(fileInput: any) {
     this.file = fileInput.target.files[0];
     const assetSrc = URL.createObjectURL(this.file);
-    this.isSizeInvalid =
-      this.file.type.includes('video') && this.file.size > 4000000
-        ? true
-        : false;
-    !this.isSizeInvalid
+    this.validateSize();
+    this.isSizeValid
       ? this.service.updateAssets(assetSrc, this.file)
       : this.service.updateAssets('', null);
+    this.fileName = this.file.name;
     this.assetLink = '';
+  }
+
+  validateSize() {
+    this.isSizeValid = !(
+      this.file.type.includes('video') && this.file.size > 4000000
+    );
   }
 }

@@ -5,7 +5,7 @@ mat-expansion-panel {
     box-shadow: none !important;
 }
 
-input {
+.button-filename input {
     display: none;
 }
 
@@ -18,4 +18,8 @@ input {
 p {
     margin-top: 10px;
     margin-left: 15px
+}
+
+mat-form-field {
+    width: 100%;
 }

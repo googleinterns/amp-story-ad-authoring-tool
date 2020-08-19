@@ -27,6 +27,7 @@ export class AssetUploadComponent {
         !this.isSizeInvalid
           ? this.service.updateAssets(assetLink, assetFile)
           : this.service.updateAssets('', null);
+        document.getElementById('filename').innerHTML = '';
       });
   }
 

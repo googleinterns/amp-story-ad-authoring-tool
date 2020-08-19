@@ -2,6 +2,7 @@ import {TestBed} from '@angular/core/testing';
 
 import {DownloadService} from './download.service';
 import {AdAuthoringWorkflowStateContainer} from '../ad-authoring/ad-authoring.state';
+import {map} from 'rxjs/operators';
 
 describe('DownloadService', () => {
   let service: DownloadService;
@@ -52,9 +53,23 @@ describe('DownloadService', () => {
     expect(assetFile).toBe(state.getValue().file);
   });
 
-  it('should expect downloadDisabled to return false', () => {
-    const downloadDisabledVal = service.isDownloadDisabled();
+  it('should expect isDownloadDisabled to return false', () => {
+    let downloadDisabledVal;
+    service.isDownloadDisabled().subscribe(state => {
+      downloadDisabledVal = state;
+    });
 
     expect(downloadDisabledVal).toBe(false);
+  });
+
+  it('should expect isDownloadDisabled to return true when landingUrl is not present', () => {
+    let downloadDisabledVal;
+    service.isDownloadDisabled().subscribe(state => {
+      downloadDisabledVal = state;
+    });
+
+    state.setState({landingUrl: ''});
+
+    expect(downloadDisabledVal).toBe(true);
   });
 });

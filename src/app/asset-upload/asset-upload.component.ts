@@ -41,5 +41,6 @@ export class AssetUploadComponent {
     !this.isSizeInvalid
       ? this.service.updateAssets(assetSrc, this.file)
       : this.service.updateAssets('', null);
+    this.assetLink = '';
   }
 }

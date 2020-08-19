@@ -1,7 +1,10 @@
+import {CallToActionEnum} from './call-to-action';
+import {LandingTypeEnum} from './landing-type-values';
+
 export interface generateAmpHtmlParams {
-  readonly callToActionStr: string;
+  readonly callToAction: CallToActionEnum;
   readonly landingUrl: string;
-  readonly landingType: string;
+  readonly landingType: LandingTypeEnum;
   readonly assetSrc?: string;
   readonly assetFilePath?: string;
   readonly assetFile: File;
@@ -10,7 +13,7 @@ export interface generateAmpHtmlParams {
 export function generateAdAmpHtml(ampHtml: generateAmpHtmlParams) {
   const adHtml =
     '"<!doctype html><html amp4ads><head><meta charset=\\"utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width,minimum-scale=1\\"><meta name=\\"amp-cta-type\\" content=\\"' +
-    ampHtml.callToActionStr +
+    ampHtml.callToAction +
     '\\"><meta name=\\"amp-cta-url\\" content=\\"' +
     ampHtml.landingUrl +
     '\\"><meta name=\\"amp-cta-landing-page-type\\" content=\\"' +
@@ -47,7 +50,7 @@ export function generateHtmlForDownload(ampHtml: generateAmpHtmlParams) {
       <head>
         <meta charset=\"utf-8\">
         <meta name=\"viewport\" content=\"width=device-width,minimum-scale=1\">
-        <meta name=\"amp-cta-type\" content=\"${ampHtml.callToActionStr}\">
+        <meta name=\"amp-cta-type\" content=\"${ampHtml.callToAction}\">
         <meta name=\"amp-cta-url\" content=\"${ampHtml.landingUrl}\">
         <meta name=\"amp-cta-landing-page-type\" content=\"${ampHtml.landingType}\">
         <style amp4ads-boilerplate>

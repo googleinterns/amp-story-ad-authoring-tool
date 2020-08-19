@@ -30,6 +30,7 @@ export class AdAuthoringService {
   }
 
   updateCallToAction(callToAction: CallToActionEnum) {
+    console.log(callToAction);
     this.adAuthoringState.setState({
       ...this.adAuthoringState.getValue(),
       callToAction,

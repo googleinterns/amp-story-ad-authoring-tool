@@ -25,7 +25,7 @@ export class AdAuthoringWorkflowStateContainer {
     callToAction: CallToActionEnum.EXPLORE,
     fileSrc: 'https://placekitten.com/300/250',
     ampHtml: generateStoryAmpHtml({
-      callToActionStr: CallToActionEnum.EXPLORE,
+      callToAction: CallToActionEnum.EXPLORE,
       landingUrl: '',
       landingType: LandingTypeEnum.NONAMP,
       assetSrc: 'https://placekitten.com/300/250',
@@ -43,7 +43,7 @@ export class AdAuthoringWorkflowStateContainer {
 
   setState(nextState: AdAuthoringWorkflowState): void {
     const AmpHtml = generateStoryAmpHtml({
-      callToActionStr: nextState.callToAction,
+      callToAction: nextState.callToAction,
       landingUrl: nextState.landingUrl,
       landingType: nextState.landingType,
       assetSrc: nextState.fileSrc,

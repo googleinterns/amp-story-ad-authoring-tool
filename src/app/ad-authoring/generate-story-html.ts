@@ -2,7 +2,7 @@ import {generateAdAmpHtml, generateAmpHtmlParams} from './generate-ad-html';
 
 export function generateStoryAmpHtml(ampHtml: generateAmpHtmlParams) {
   const adAmpHtml = generateAdAmpHtml({
-    callToActionStr: ampHtml.callToActionStr,
+    callToAction: ampHtml.callToAction,
     landingUrl: ampHtml.landingUrl,
     landingType: ampHtml.landingType,
     assetSrc: ampHtml.assetSrc,

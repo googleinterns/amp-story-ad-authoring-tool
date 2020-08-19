@@ -21,7 +21,7 @@ export function generateAdAmpHtml(ampHtml: generateAmpHtmlParams) {
     '<script async custom-element=\\"amp-video\\" src=\\"https:\\/\\/cdn.ampproject.org\\/v0\\/amp-video-0.1.js\\"><\\/script>';
 
   const imageHtml =
-    '<\\/head><body><amp-img layout=\\"fixed\\" height=\\"250\\" width=\\"300\\" src=\\"' +
+    '<\\/head><body><amp-img layout=\\"fill\\" src=\\"' +
     ampHtml.assetSrc +
     '\\"><\\/amp-img><\\/body><\\/html>"';
 
@@ -61,7 +61,7 @@ export function generateHtmlForDownload(ampHtml: generateAmpHtmlParams) {
   const imageHtml = `
       <\/head>
         <body>
-          <amp-img layout=\"fixed\" height=\"250\" width=\"300\" src=\"${ampHtml.assetFilePath}\">
+          <amp-img layout=\"fill\" src=\"${ampHtml.assetFilePath}\">
           <\/amp-img>
         <\/body>
     <\/html>`;

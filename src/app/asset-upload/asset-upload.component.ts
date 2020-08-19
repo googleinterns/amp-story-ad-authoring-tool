@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {AssetUploadService} from './asset-upload.service';
+import {EventEmitter} from 'protractor';
 
 @Component({
   selector: 'app-asset-upload',

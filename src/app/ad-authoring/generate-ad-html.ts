@@ -8,6 +8,7 @@ export interface generateAmpHtmlParams {
   readonly assetSrc?: string;
   readonly assetFilePath?: string;
   readonly assetFile: File;
+  readonly isAssetLink: boolean;
 }
 
 export function generateAdAmpHtml(ampHtml: generateAmpHtmlParams) {
@@ -44,6 +45,10 @@ export function generateAdAmpHtml(ampHtml: generateAmpHtmlParams) {
 }
 
 export function generateHtmlForDownload(ampHtml: generateAmpHtmlParams) {
+  const assetSrc = ampHtml.isAssetLink
+    ? ampHtml.assetSrc
+    : ampHtml.assetFilePath;
+
   const adHtml = `
     <!doctype html>
     <html amp4ads>
@@ -65,7 +70,7 @@ export function generateHtmlForDownload(ampHtml: generateAmpHtmlParams) {
   const imageHtml = `
       <\/head>
         <body>
-          <amp-img layout=\"fill\" src=\"${ampHtml.assetFilePath}\">
+          <amp-img layout=\"fill\" src=\"${assetSrc}\">
           <\/amp-img>
         <\/body>
     <\/html>`;
@@ -75,7 +80,7 @@ export function generateHtmlForDownload(ampHtml: generateAmpHtmlParams) {
       <\/head>
         <body>
           <amp-video layout=\"fill\" height=\"1920\" width=\"1080\" autoplay loop>
-            <source src=\"${ampHtml.assetFilePath}\" type=\"${ampHtml.assetFile.type}\" \/>
+            <source src=\"${assetSrc}\" type=\"${ampHtml.assetFile.type}\" \/>
           <\/amp-video>
         <\/body>
     <\/html>`

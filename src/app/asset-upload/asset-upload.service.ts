@@ -21,6 +21,13 @@ export class AssetUploadService {
     });
   }
 
+  updateIsAssetLink(isAssetLink: boolean) {
+    this.adAuthoringState.setState({
+      ...this.adAuthoringState.getValue(),
+      isAssetLink,
+    });
+  }
+
   getAssets(): Observable<AdAuthoringWorkflowState> {
     return this.adAuthoringState.getState();
   }

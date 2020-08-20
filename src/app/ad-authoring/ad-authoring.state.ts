@@ -8,6 +8,7 @@ export interface AdAuthoringWorkflowState {
   readonly landingUrl?: string;
   readonly landingType?: LandingTypeEnum;
   readonly callToAction?: CallToActionEnum;
+  readonly isAssetLink?: boolean;
   readonly fileSrc?: string;
   readonly file?: File;
   readonly ampHtml?: string;
@@ -23,13 +24,13 @@ export class AdAuthoringWorkflowStateContainer {
     landingUrl: '',
     landingType: LandingTypeEnum.NONAMP,
     callToAction: CallToActionEnum.EXPLORE,
-    fileSrc: 'https://placekitten.com/300/250',
     ampHtml: generateStoryAmpHtml({
       callToAction: CallToActionEnum.EXPLORE,
       landingUrl: '',
       landingType: LandingTypeEnum.NONAMP,
       assetSrc: 'https://placekitten.com/300/250',
       assetFile: null,
+      isAssetLink: true,
     }),
   });
 
@@ -48,6 +49,7 @@ export class AdAuthoringWorkflowStateContainer {
       landingType: nextState.landingType,
       assetSrc: nextState.fileSrc,
       assetFile: nextState.file,
+      isAssetLink: nextState.isAssetLink,
     });
     nextState = {...nextState, ampHtml: AmpHtml};
     this.state$.next(nextState);

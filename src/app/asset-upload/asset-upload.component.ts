@@ -20,17 +20,18 @@ export class AssetUploadComponent {
       .then(response => response.blob())
       .then(blob => {
         const filename = assetLink.substring(assetLink.lastIndexOf('/'));
-        const file = new File([blob], filename);
+        const file = new File([blob], filename, {type: blob.type});
         this.updateAssets(assetLink, file);
+        this.service.updateIsAssetLink(true);
         this.fileName = '';
       });
   }
 
   onFileInput(fileInput: any) {
-    console.log(fileInput);
     const file = fileInput.target.files[0];
     const assetSrc = URL.createObjectURL(file);
     this.updateAssets(assetSrc, file);
+    this.service.updateIsAssetLink(false);
     this.fileName = file.name;
     this.assetLink = '';
 

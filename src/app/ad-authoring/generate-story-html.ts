@@ -7,6 +7,7 @@ export function generateStoryAmpHtml(ampHtml: generateAmpHtmlParams) {
     landingType: ampHtml.landingType,
     assetSrc: ampHtml.assetSrc,
     assetFile: ampHtml.assetFile,
+    isAssetLink: ampHtml.isAssetLink,
   });
   return `<!doctype html>
      <html amp lang="en">

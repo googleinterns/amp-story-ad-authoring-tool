@@ -21,24 +21,29 @@ export class DownloadService {
   }
 
   getAsset() {
-    return this.adAuthoringState.getValue().file;
+    return {
+      file: this.adAuthoringState.getValue().file,
+      isAssetLink: this.adAuthoringState.getValue().isAssetLink,
+    };
   }
 
   generateHtmlForDownload() {
     const landingUrl = this.adAuthoringState.getValue().landingUrl;
     const landingType = this.adAuthoringState.getValue().landingType;
-    console.log(landingType);
     const callToAction = this.adAuthoringState.getValue().callToAction;
-    console.log(callToAction);
     const file = this.adAuthoringState.getValue().file;
     const assetPath = file.name;
+    const fileSrc = this.adAuthoringState.getValue().fileSrc;
+    const isAssetLink = this.adAuthoringState.getValue().isAssetLink;
 
     return generateHtmlForDownload({
       callToAction: callToAction,
       landingUrl: landingUrl,
       landingType: landingType,
       assetFilePath: assetPath,
+      assetSrc: fileSrc,
       assetFile: file,
+      isAssetLink: isAssetLink,
     });
   }
 }

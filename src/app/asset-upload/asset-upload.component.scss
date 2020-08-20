@@ -1,3 +1,5 @@
+@import '../app.component.scss';
+
 mat-expansion-panel {
     border: 1px solid #e8e8e8;
     border-bottom: none !important;
@@ -22,4 +24,8 @@ p {
 
 mat-form-field {
     width: 100%;
+}
+
+button {
+    background-color: $google-blue !important;
 }

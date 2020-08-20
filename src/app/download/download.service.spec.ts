@@ -16,6 +16,7 @@ describe('DownloadService', () => {
     state.setState({
       landingUrl: 'https://google.com',
       file: fakeFile,
+      ampHtml: '',
     });
   });
 
@@ -68,7 +69,10 @@ describe('DownloadService', () => {
       downloadDisabledVal = state;
     });
 
-    state.setState({landingUrl: ''});
+    state.setState({
+      landingUrl: '',
+      ampHtml: '',
+    });
 
     expect(downloadDisabledVal).toBe(true);
   });

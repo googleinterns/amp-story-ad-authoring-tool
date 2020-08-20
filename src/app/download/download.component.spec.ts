@@ -38,9 +38,12 @@ describe('DownloadComponent', () => {
   });
 
   it('should expect download button to be disabled when landingUrl has a value but file is null', async () => {
+    state.setState({
+      landingUrl: 'https://google.com',
+      ampHtml: '',
+    });
     const button = await loader.getHarness(MatButtonHarness);
 
-    state.setState({landingUrl: 'https://google.com'});
     const isDisbaled = await button.isDisabled();
 
     expect(isDisbaled).toBe(true);
@@ -51,8 +54,10 @@ describe('DownloadComponent', () => {
     state.setState({
       landingUrl: 'https://google.com',
       file: fakeFile,
+      ampHtml: '',
     });
     const button = await loader.getHarness(MatButtonHarness);
+
     const isDisbaled = await button.isDisabled();
 
     expect(isDisbaled).toBe(false);
@@ -63,6 +68,7 @@ describe('DownloadComponent', () => {
     state.setState({
       landingUrl: 'https://google.com',
       file: fakeFile,
+      ampHtml: '',
     });
     spyOn(component, 'downloadFileZip');
     const button = await loader.getHarness(MatButtonHarness);

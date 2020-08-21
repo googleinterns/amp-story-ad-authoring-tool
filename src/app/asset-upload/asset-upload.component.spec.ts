@@ -70,4 +70,29 @@ describe('AssetUploadComponent', () => {
       'https://i.imgur.com/7LA92gi.jpg'
     );
   });
+
+  it('isSizeValid should be true initially', async () => {
+    expect(component.isSizeValid).toBe(true);
+  });
+
+  it('should mock a fetch call and test asset', async done => {
+    const response = new Response(new Blob([''], {type: 'image/jpg'}));
+    const blobPromise = new Promise<Response>((resolve, reject) => {
+      resolve(response);
+    });
+    spyOn(window, 'fetch').and.returnValue(blobPromise);
+    const linkUploadInput = await loader.getHarness(MatInputHarness);
+
+    await linkUploadInput.setValue('https://i.imgur.com/7LA92gi.jpg');
+    await linkUploadInput.blur();
+
+    setTimeout(() => {
+      // waits one second in order to give asset link upload promise time to resolve
+      expect(state.getValue().fileSrc).toEqual(
+        'https://i.imgur.com/7LA92gi.jpg'
+      );
+      expect(state.getValue().file.type).toEqual('image/jpg');
+      done();
+    }, 1000);
+  });
 });

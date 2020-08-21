@@ -1,13 +1,16 @@
-import {generateAdAmpHtml, generateAmpHtmlParams} from './generate-ad-html';
+import {
+  generateAdHtmlForPreview,
+  generateAmpHtmlParams,
+} from './generate-ad-html';
 
 export function generateStoryAmpHtml(ampHtml: generateAmpHtmlParams) {
-  const adAmpHtml = generateAdAmpHtml({
+  const adAmpHtml = generateAdHtmlForPreview({
     callToAction: ampHtml.callToAction,
     landingUrl: ampHtml.landingUrl,
     landingType: ampHtml.landingType,
     assetSrc: ampHtml.assetSrc,
     assetFile: ampHtml.assetFile,
-    isAssetLink: ampHtml.isAssetLink,
+    isExternalAsset: ampHtml.isExternalAsset,
   });
   return `<!doctype html>
      <html amp lang="en">

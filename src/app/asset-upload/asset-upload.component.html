@@ -26,8 +26,8 @@
             <mat-label>Upload Asset from Link</mat-label>
             <input matInput 
                    placeholder="Sample asset link here"
-                   [(ngModel)] = "assetLink"
-                   (blur)="assetLinkUpload($event.target.value)"/>
+                   [(ngModel)] = "assetUrl"
+                   (blur)="fetchAssetFromUrl($event.target.value)"/>
         </mat-form-field>
         <mat-error *ngIf="!isSizeValid">
             Video is larger than the recommended size of 4 MB

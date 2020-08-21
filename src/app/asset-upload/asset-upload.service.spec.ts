@@ -46,15 +46,15 @@ describe('AssetUploadService', () => {
     expect(state.getValue().ampHtml).toContain(state.getValue().fileSrc);
   });
 
-  it('should update isAssetLink to true when updateIsAssetLink is called', () => {
+  it('should update isExternalAsset to true when updateIsAssetLink is called', () => {
     service.updateIsAssetLink(true);
 
-    expect(state.getValue().isAssetLink).toBe(true);
+    expect(state.getValue().isExternalAsset).toBe(true);
   });
 
-  it('should update isAssetLink to true when updateIsAssetLink is called', () => {
+  it('should update isExternalAsset to true when updateIsAssetLink is called', () => {
     service.updateIsAssetLink(false);
 
-    expect(state.getValue().isAssetLink).toBe(false);
+    expect(state.getValue().isExternalAsset).toBe(false);
   });
 });

@@ -22,7 +22,7 @@ export class DownloadComponent {
 
     const asset = this.downloadService.getAsset();
     // only create an asset file in the zip if the image was uploaded through a file, not link
-    if (!asset.isAssetLink) {
+    if (!asset.isExternalAsset) {
       const assetFileName = asset.file.name;
       zip.file(assetFileName, asset.file);
     }

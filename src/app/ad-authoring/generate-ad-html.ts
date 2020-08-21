@@ -8,10 +8,10 @@ export interface generateAmpHtmlParams {
   readonly assetSrc?: string;
   readonly assetFilePath?: string;
   readonly assetFile: File;
-  readonly isAssetLink: boolean;
+  readonly isExternalAsset: boolean;
 }
 
-export function generateAdAmpHtml(ampHtml: generateAmpHtmlParams) {
+export function generateAdHtmlForPreview(ampHtml: generateAmpHtmlParams) {
   const adHtml =
     '"<!doctype html><html amp4ads><head><meta charset=\\"utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width,minimum-scale=1\\"><meta name=\\"amp-cta-type\\" content=\\"' +
     ampHtml.callToAction +
@@ -44,8 +44,8 @@ export function generateAdAmpHtml(ampHtml: generateAmpHtmlParams) {
   return adAmpHtml;
 }
 
-export function generateHtmlForDownload(ampHtml: generateAmpHtmlParams) {
-  const assetSrc = ampHtml.isAssetLink
+export function generateAdHtmlForDownload(ampHtml: generateAmpHtmlParams) {
+  const assetSrc = ampHtml.isExternalAsset
     ? ampHtml.assetSrc
     : ampHtml.assetFilePath;
 

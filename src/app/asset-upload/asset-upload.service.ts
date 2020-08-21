@@ -21,10 +21,10 @@ export class AssetUploadService {
     });
   }
 
-  updateIsAssetLink(isAssetLink: boolean) {
+  updateIsAssetLink(isExternalAsset: boolean) {
     this.adAuthoringState.setState({
       ...this.adAuthoringState.getValue(),
-      isAssetLink,
+      isExternalAsset,
     });
   }
 

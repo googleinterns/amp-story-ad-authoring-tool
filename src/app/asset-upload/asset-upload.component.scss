@@ -1,7 +1,7 @@
 @import '../app.component.scss';
 
 mat-expansion-panel {
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid $grey-border;
     border-radius: 0;
     box-shadow: none !important;
 }

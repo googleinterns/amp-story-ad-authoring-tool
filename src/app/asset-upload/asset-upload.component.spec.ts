@@ -59,14 +59,14 @@ describe('AssetUploadComponent', () => {
     expect(component.onFileInput).toHaveBeenCalled();
   });
 
-  it('should call the assetLinkUpload function when a user inputs a link for asset upload', async () => {
-    spyOn(component, 'assetLinkUpload');
+  it('should call the fetchAssetFromUrl function when a user inputs a link for asset upload', async () => {
+    spyOn(component, 'fetchAssetFromUrl');
     const linkUploadInput = await loader.getHarness(MatInputHarness);
 
     await linkUploadInput.setValue('https://i.imgur.com/7LA92gi.jpg');
     await linkUploadInput.blur();
 
-    expect(component.assetLinkUpload).toHaveBeenCalledWith(
+    expect(component.fetchAssetFromUrl).toHaveBeenCalledWith(
       'https://i.imgur.com/7LA92gi.jpg'
     );
   });

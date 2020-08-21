@@ -16,6 +16,7 @@
  */
 
  $google-blue: #1876d2;
+ $grey-border: #e8e8e8;
 
 :host {
   box-sizing: border-box;
@@ -32,7 +33,7 @@
 .preview {
   align-items: center;
   background-color: #fafafa;
-  border-right: 1px solid #e8e8e8;
+  border-right: 1px solid $grey-border;
   display: flex;
   height: 100%;
   justify-content: center;

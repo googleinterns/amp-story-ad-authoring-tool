@@ -8,20 +8,20 @@ import {EventEmitter} from 'protractor';
   styleUrls: ['./asset-upload.component.scss'],
 })
 export class AssetUploadComponent {
-  assetLink = '';
+  assetUrl = '';
   isSizeValid = true;
   fileName = null;
 
   constructor(private service: AssetUploadService) {}
 
-  assetLinkUpload(assetLink: string) {
+  fetchAssetFromUrl(assetUrl: string) {
     // Fetch the asset and parse the response stream as a blob
-    fetch(assetLink)
+    fetch(assetUrl)
       .then(response => response.blob())
       .then(blob => {
-        const filename = assetLink.substring(assetLink.lastIndexOf('/'));
+        const filename = assetUrl.substring(assetUrl.lastIndexOf('/'));
         const file = new File([blob], filename, {type: blob.type});
-        this.updateAssets(assetLink, file);
+        this.updateAssets(assetUrl, file);
         this.service.updateIsAssetLink(true);
         this.fileName = '';
       });
@@ -33,7 +33,7 @@ export class AssetUploadComponent {
     this.updateAssets(assetSrc, file);
     this.service.updateIsAssetLink(false);
     this.fileName = file.name;
-    this.assetLink = '';
+    this.assetUrl = '';
 
     // addresses the case where user uploads the same file in succession
     fileInput.target.value = '';
@@ -49,6 +49,7 @@ export class AssetUploadComponent {
   }
 
   private validateSize(file: File) {
-    this.isSizeValid = !(file.type.includes('video') && file.size > 4000000);
+    const FOUR_MB = 4000000;
+    this.isSizeValid = !(file.type.includes('video') && file.size > FOUR_MB);
   }
 }

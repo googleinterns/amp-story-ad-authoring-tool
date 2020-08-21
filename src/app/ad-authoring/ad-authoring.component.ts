@@ -28,6 +28,9 @@ export class AdAuthoringComponent {
   LandingTypeMapping = LANDING_TYPE_DISPLAY_VALUES;
   landingTypeValues = sortedLandingType;
 
+  defaultLandingType = 'NONAMP';
+  defaultCallToAction = 'EXPLORE';
+
   urlControl = new FormControl('', [
     Validators.required,
     Validators.pattern(validUrlRegex),

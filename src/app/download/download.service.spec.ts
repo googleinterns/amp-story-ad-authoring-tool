@@ -50,7 +50,7 @@ describe('DownloadService', () => {
   it('should get asset file', () => {
     const assetFile = service.getAsset();
 
-    expect(assetFile).toBe(state.getValue().file);
+    expect(assetFile.file).toBe(state.getValue().file);
   });
 
   it('should expect isDownloadDisabled to return false', () => {

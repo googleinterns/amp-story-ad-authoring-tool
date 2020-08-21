@@ -75,7 +75,7 @@ describe('AssetUploadComponent', () => {
     expect(component.isSizeValid).toBe(true);
   });
 
-  it('should mock a fetch call and test asset', async done => {
+  it('should mock a fetch call and test image asset', async done => {
     const response = new Response(new Blob([''], {type: 'image/jpg'}));
     const blobPromise = new Promise<Response>((resolve, reject) => {
       resolve(response);
@@ -94,5 +94,43 @@ describe('AssetUploadComponent', () => {
       expect(state.getValue().file.type).toEqual('image/jpg');
       done();
     }, 1000);
+  });
+
+  it('should mock a fetch call and test video asset', async done => {
+    const response = new Response(new Blob([''], {type: 'video/mp4'}));
+    const blobPromise = new Promise<Response>((resolve, reject) => {
+      resolve(response);
+    });
+    spyOn(window, 'fetch').and.returnValue(blobPromise);
+    const linkUploadInput = await loader.getHarness(MatInputHarness);
+
+    await linkUploadInput.setValue('https://i.imgur.com/7LA92gi.mp4');
+    await linkUploadInput.blur();
+
+    setTimeout(() => {
+      // waits one second in order to give asset link upload promise time to resolve
+      expect(state.getValue().fileSrc).toEqual(
+        'https://i.imgur.com/7LA92gi.mp4'
+      );
+      expect(state.getValue().file.type).toEqual('video/mp4');
+      done();
+    }, 1000);
+  });
+
+  it('isSizeValid should return false for video asset with size larger than 4MB', () => {
+    const file = new File([''], name, {type: 'video/mp4'});
+    Object.defineProperty(file, 'size', {value: 5000000, writable: false});
+
+    component.validateSize(file);
+
+    expect(component.isSizeValid).toBe(false);
+  });
+
+  it('isSizeValid should return true for image asset', () => {
+    const file = new File([''], name, {type: 'image/jpg'});
+
+    component.validateSize(file);
+
+    expect(component.isSizeValid).toBe(true);
   });
 });

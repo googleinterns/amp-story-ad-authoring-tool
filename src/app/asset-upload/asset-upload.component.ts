@@ -48,7 +48,8 @@ export class AssetUploadComponent {
     }
   }
 
-  private validateSize(file: File) {
+  // removed private for testing purposes
+  validateSize(file: File) {
     const FOUR_MB = 4000000;
     this.isSizeValid = !(file.type.includes('video') && file.size > FOUR_MB);
   }

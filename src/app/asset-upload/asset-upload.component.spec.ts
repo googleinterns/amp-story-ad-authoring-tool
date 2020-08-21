@@ -6,6 +6,7 @@ import {AppModule} from '../app.module';
 import {MatExpansionPanelHarness} from '@angular/material/expansion/testing';
 import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
 import {By} from '@angular/platform-browser';
+import {MatInputHarness} from '@angular/material/input/testing';
 
 let loader: HarnessLoader;
 
@@ -53,5 +54,17 @@ describe('AssetUploadComponent', () => {
     input.dispatchEvent(new Event('change'));
 
     expect(component.onFileInput).toHaveBeenCalled();
+  });
+
+  it('should call the assetLinkUpload function when a user inputs a link for asset upload', async () => {
+    spyOn(component, 'assetLinkUpload');
+    const linkUploadInput = await loader.getHarness(MatInputHarness);
+
+    await linkUploadInput.setValue('https://i.imgur.com/7LA92gi.jpg');
+    await linkUploadInput.blur();
+
+    expect(component.assetLinkUpload).toHaveBeenCalledWith(
+      'https://i.imgur.com/7LA92gi.jpg'
+    );
   });
 });

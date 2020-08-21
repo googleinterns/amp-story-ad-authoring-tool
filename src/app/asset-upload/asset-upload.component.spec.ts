@@ -6,12 +6,15 @@ import {AppModule} from '../app.module';
 import {MatExpansionPanelHarness} from '@angular/material/expansion/testing';
 import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
 import {By} from '@angular/platform-browser';
+import {MatInputHarness} from '@angular/material/input/testing';
+import {AdAuthoringWorkflowStateContainer} from '../ad-authoring/ad-authoring.state';
 
 let loader: HarnessLoader;
 
 describe('AssetUploadComponent', () => {
   let component: AssetUploadComponent;
   let fixture: ComponentFixture<AssetUploadComponent>;
+  let state: AdAuthoringWorkflowStateContainer;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,6 +25,7 @@ describe('AssetUploadComponent', () => {
     loader = TestbedHarnessEnvironment.loader(fixture);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    state = TestBed.inject(AdAuthoringWorkflowStateContainer);
   });
 
   it('should create asset upload component', () => {
@@ -53,5 +57,17 @@ describe('AssetUploadComponent', () => {
     input.dispatchEvent(new Event('change'));
 
     expect(component.onFileInput).toHaveBeenCalled();
+  });
+
+  it('should call the assetLinkUpload function when a user inputs a link for asset upload', async () => {
+    spyOn(component, 'assetLinkUpload');
+    const linkUploadInput = await loader.getHarness(MatInputHarness);
+
+    await linkUploadInput.setValue('https://i.imgur.com/7LA92gi.jpg');
+    await linkUploadInput.blur();
+
+    expect(component.assetLinkUpload).toHaveBeenCalledWith(
+      'https://i.imgur.com/7LA92gi.jpg'
+    );
   });
 });

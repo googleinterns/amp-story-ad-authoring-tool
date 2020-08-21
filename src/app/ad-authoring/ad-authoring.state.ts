@@ -18,7 +18,7 @@ export interface AdAuthoringWorkflowState {
   // the file of the asset
   readonly file?: File;
   // Amp Html of the story
-  readonly ampHtml?: string;
+  readonly ampHtml: string;
 }
 
 @Injectable({

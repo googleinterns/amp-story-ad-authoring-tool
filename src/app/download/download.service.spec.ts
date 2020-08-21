@@ -69,7 +69,10 @@ describe('DownloadService', () => {
       downloadDisabledVal = state;
     });
 
-    state.setState({landingUrl: '', ampHtml: ''});
+    state.setState({
+      landingUrl: '',
+      ampHtml: '',
+    });
 
     expect(downloadDisabledVal).toBe(true);
   });

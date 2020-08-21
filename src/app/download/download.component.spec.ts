@@ -38,6 +38,10 @@ describe('DownloadComponent', () => {
   });
 
   it('should expect download button to be disabled when landingUrl has a value but file is null', async () => {
+    state.setState({
+      landingUrl: 'https://google.com',
+      ampHtml: '',
+    });
     const button = await loader.getHarness(MatButtonHarness);
 
     state.setState({landingUrl: 'https://google.com', ampHtml: ''});
@@ -54,6 +58,7 @@ describe('DownloadComponent', () => {
       ampHtml: '',
     });
     const button = await loader.getHarness(MatButtonHarness);
+
     const isDisbaled = await button.isDisabled();
 
     expect(isDisbaled).toBe(false);

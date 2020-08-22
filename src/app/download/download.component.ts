@@ -21,8 +21,11 @@ export class DownloadComponent {
     zip.file('index.html', data);
 
     const asset = this.downloadService.getAsset();
-    const assetFileName = asset.name;
-    zip.file(assetFileName, asset);
+    // only create an asset file in the zip if the image was uploaded through a file, not link
+    if (!asset.isExternalAsset) {
+      const assetFileName = asset.file.name;
+      zip.file(assetFileName, asset.file);
+    }
 
     zip.generateAsync({type: 'blob'}).then(function (content) {
       const objectUrl: string = URL.createObjectURL(content);

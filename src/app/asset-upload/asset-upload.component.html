@@ -10,14 +10,27 @@
                     color="primary" 
                     type="button" 
                     (click)="fileInput.click()">
-            <span>Upload</span>
+            <span>Upload File</span>
             <input #fileInput 
                    type="file" 
                    (change)="onFileInput($event)" 
                    name="filename"
                    accept="image/*,video/*"/>
             </button>
-            <p *ngIf="file">{{file.name}}</p>
+            <p *ngIf="fileName" id="fileName">{{fileName}}</p>
         </div>
+        <br>
+        OR
+        <br>
+        <mat-form-field class="example-full-width">
+            <mat-label>Upload Asset from Link</mat-label>
+            <input matInput 
+                   placeholder="Sample asset link here"
+                   [(ngModel)] = "assetUrl"
+                   (blur)="fetchAssetFromUrl($event.target.value)"/>
+        </mat-form-field>
+        <mat-error *ngIf="!isSizeValid">
+            Video is larger than the recommended size of 4 MB
+        </mat-error>
     </mat-expansion-panel>
 </div>

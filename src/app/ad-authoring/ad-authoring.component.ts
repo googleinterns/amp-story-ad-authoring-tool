@@ -28,6 +28,9 @@ export class AdAuthoringComponent {
   LandingTypeMapping = LANDING_TYPE_DISPLAY_VALUES;
   landingTypeValues = sortedLandingType;
 
+  defaultLandingType = 'NONAMP';
+  defaultCallToAction = 'EXPLORE';
+
   urlControl = new FormControl('', [
     Validators.required,
     Validators.pattern(validUrlRegex),
@@ -42,7 +45,7 @@ export class AdAuthoringComponent {
   constructor(private service: AdAuthoringService) {}
 
   updateLandingUrl(landingUrl: string) {
-    this.service.updateLandingUrl(landingUrl);
+    this.service.updateLandingUrl(this.urlControl.invalid ? '' : landingUrl);
   }
 
   updateLandingType(landingType: LandingTypeEnum) {

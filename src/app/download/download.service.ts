@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AdAuthoringWorkflowStateContainer} from '../ad-authoring/ad-authoring.state';
 import {map} from 'rxjs/operators';
-import {generateHtmlForDownload} from '../ad-authoring/generate-amp-html';
+import {generateAdHtmlForDownload} from '../ad-authoring/generate-ad-html';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,10 @@ export class DownloadService {
   }
 
   getAsset() {
-    return this.adAuthoringState.getValue().file;
+    return {
+      file: this.adAuthoringState.getValue().file,
+      isExternalAsset: this.adAuthoringState.getValue().isExternalAsset,
+    };
   }
 
   generateHtmlForDownload() {
@@ -30,13 +33,17 @@ export class DownloadService {
     const callToAction = this.adAuthoringState.getValue().callToAction;
     const file = this.adAuthoringState.getValue().file;
     const assetPath = file.name;
+    const fileSrc = this.adAuthoringState.getValue().fileSrc;
+    const isExternalAsset = this.adAuthoringState.getValue().isExternalAsset;
 
-    return generateHtmlForDownload({
-      callToActionStr: callToAction,
+    return generateAdHtmlForDownload({
+      callToAction: callToAction,
       landingUrl: landingUrl,
       landingType: landingType,
       assetFilePath: assetPath,
+      assetSrc: fileSrc,
       assetFile: file,
+      isExternalAsset: isExternalAsset,
     });
   }
 }

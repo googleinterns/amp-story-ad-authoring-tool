@@ -119,6 +119,7 @@ describe('AdAuthoringComponent', () => {
     const landingUrlInput = await loader.getHarness(MatInputHarness);
 
     await landingUrlInput.setValue('https://google.com');
+    await landingUrlInput.blur();
 
     expect(service.updateLandingUrl).toHaveBeenCalledWith('https://google.com');
   });

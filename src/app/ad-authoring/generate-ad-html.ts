@@ -1,16 +1,20 @@
+import {CallToActionEnum} from './call-to-action';
+import {LandingTypeEnum} from './landing-type-values';
+
 export interface generateAmpHtmlParams {
-  readonly callToActionStr: string;
+  readonly callToAction: CallToActionEnum;
   readonly landingUrl: string;
-  readonly landingType: string;
+  readonly landingType: LandingTypeEnum;
   readonly assetSrc?: string;
   readonly assetFilePath?: string;
   readonly assetFile: File;
+  readonly isExternalAsset: boolean;
 }
 
-export function generateAdAmpHtml(ampHtml: generateAmpHtmlParams) {
+export function generateAdHtmlForPreview(ampHtml: generateAmpHtmlParams) {
   const adHtml =
     '"<!doctype html><html amp4ads><head><meta charset=\\"utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width,minimum-scale=1\\"><meta name=\\"amp-cta-type\\" content=\\"' +
-    ampHtml.callToActionStr +
+    ampHtml.callToAction +
     '\\"><meta name=\\"amp-cta-url\\" content=\\"' +
     ampHtml.landingUrl +
     '\\"><meta name=\\"amp-cta-landing-page-type\\" content=\\"' +
@@ -21,7 +25,7 @@ export function generateAdAmpHtml(ampHtml: generateAmpHtmlParams) {
     '<script async custom-element=\\"amp-video\\" src=\\"https:\\/\\/cdn.ampproject.org\\/v0\\/amp-video-0.1.js\\"><\\/script>';
 
   const imageHtml =
-    '<\\/head><body><amp-img layout=\\"fixed\\" height=\\"250\\" width=\\"300\\" src=\\"' +
+    '<\\/head><body><amp-img layout=\\"fill\\" src=\\"' +
     ampHtml.assetSrc +
     '\\"><\\/amp-img><\\/body><\\/html>"';
 
@@ -40,14 +44,19 @@ export function generateAdAmpHtml(ampHtml: generateAmpHtmlParams) {
   return adAmpHtml;
 }
 
-export function generateHtmlForDownload(ampHtml: generateAmpHtmlParams) {
+export function generateAdHtmlForDownload(ampHtml: generateAmpHtmlParams) {
+  const assetSrc = ampHtml.isExternalAsset
+    ? ampHtml.assetSrc
+    : ampHtml.assetFilePath;
+
   const adHtml = `
     <!doctype html>
     <html amp4ads>
       <head>
         <meta charset=\"utf-8\">
+        <meta name=\"ad.size\" content=\"width=1,height=1\">
         <meta name=\"viewport\" content=\"width=device-width,minimum-scale=1\">
-        <meta name=\"amp-cta-type\" content=\"${ampHtml.callToActionStr}\">
+        <meta name=\"amp-cta-type\" content=\"${ampHtml.callToAction}\">
         <meta name=\"amp-cta-url\" content=\"${ampHtml.landingUrl}\">
         <meta name=\"amp-cta-landing-page-type\" content=\"${ampHtml.landingType}\">
         <style amp4ads-boilerplate>
@@ -61,7 +70,7 @@ export function generateHtmlForDownload(ampHtml: generateAmpHtmlParams) {
   const imageHtml = `
       <\/head>
         <body>
-          <amp-img layout=\"fixed\" height=\"250\" width=\"300\" src=\"${ampHtml.assetFilePath}\">
+          <amp-img layout=\"fill\" src=\"${assetSrc}\">
           <\/amp-img>
         <\/body>
     <\/html>`;
@@ -71,7 +80,7 @@ export function generateHtmlForDownload(ampHtml: generateAmpHtmlParams) {
       <\/head>
         <body>
           <amp-video layout=\"fill\" height=\"1920\" width=\"1080\" autoplay loop>
-            <source src=\".\/${ampHtml.assetFilePath}\" type=\"${ampHtml.assetFile.type}\" \/>
+            <source src=\"${assetSrc}\" type=\"${ampHtml.assetFile.type}\" \/>
           <\/amp-video>
         <\/body>
     <\/html>`

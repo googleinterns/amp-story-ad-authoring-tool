@@ -44,6 +44,7 @@ describe('DownloadComponent', () => {
     });
     const button = await loader.getHarness(MatButtonHarness);
 
+    state.setState({landingUrl: 'https://google.com', ampHtml: ''});
     const isDisbaled = await button.isDisabled();
 
     expect(isDisbaled).toBe(true);

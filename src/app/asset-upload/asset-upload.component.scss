@@ -1,11 +1,12 @@
+@import '../app.component.scss';
+
 mat-expansion-panel {
-    border: 1px solid #e8e8e8;
-    border-bottom: none !important;
+    border-bottom: 1px solid $grey-border;
     border-radius: 0;
     box-shadow: none !important;
 }
 
-input {
+.button-filename input {
     display: none;
 }
 
@@ -18,4 +19,12 @@ input {
 p {
     margin-top: 10px;
     margin-left: 15px
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+button {
+    background-color: $google-blue !important;
 }

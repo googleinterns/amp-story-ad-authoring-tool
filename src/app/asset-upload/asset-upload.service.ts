@@ -21,6 +21,13 @@ export class AssetUploadService {
     });
   }
 
+  updateIsExternalAsset(isExternalAsset: boolean) {
+    this.adAuthoringState.setState({
+      ...this.adAuthoringState.getValue(),
+      isExternalAsset,
+    });
+  }
+
   getAssets(): Observable<AdAuthoringWorkflowState> {
     return this.adAuthoringState.getState();
   }

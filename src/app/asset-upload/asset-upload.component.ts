@@ -22,7 +22,7 @@ export class AssetUploadComponent {
         const filename = assetUrl.substring(assetUrl.lastIndexOf('/'));
         const file = new File([blob], filename, {type: blob.type});
         this.updateAssets(assetUrl, file);
-        this.service.updateIsAssetLink(true);
+        this.service.updateIsExternalAsset(true);
         this.fileName = '';
       });
   }
@@ -31,7 +31,7 @@ export class AssetUploadComponent {
     const file = fileInput.target.files[0];
     const assetSrc = URL.createObjectURL(file);
     this.updateAssets(assetSrc, file);
-    this.service.updateIsAssetLink(false);
+    this.service.updateIsExternalAsset(false);
     this.fileName = file.name;
     this.assetUrl = '';
 

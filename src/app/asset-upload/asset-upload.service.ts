@@ -21,7 +21,7 @@ export class AssetUploadService {
     });
   }
 
-  updateIsAssetLink(isExternalAsset: boolean) {
+  updateIsExternalAsset(isExternalAsset: boolean) {
     this.adAuthoringState.setState({
       ...this.adAuthoringState.getValue(),
       isExternalAsset,
